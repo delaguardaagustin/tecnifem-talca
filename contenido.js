@@ -96,7 +96,7 @@
     }
     var cf = s.confianza || {}, li = [];
     if (cf.garantia) li.push("<li>✔ " + esc(cf.garantia) + "</li>");
-    if (cf.sec) li.push('<li>✔ ' + esc(cf.sec) + (cf.sec_enlace ? ' · <a href="' + esc(cf.sec_enlace) + '" target="_blank" rel="noopener">verificar</a>' : "") + "</li>");
+    if (cf.sec) li.push('<li>✔ ' + esc(cf.sec) + (/^https?:\/\//i.test(cf.sec_enlace || "") ? ' · <a href="' + esc(cf.sec_enlace) + '" target="_blank" rel="noopener">verificar</a>' : "") + "</li>");
     if (cf.visita) li.push("<li>✔ " + esc(cf.visita) + "</li>");
     if ($("c-confianza")) { $("c-confianza").innerHTML = li.join(""); $("c-confianza").hidden = !li.length; }
     if (s.contacto) cambiarContacto(s.contacto);

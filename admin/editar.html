@@ -23,7 +23,8 @@
   <a class="wa" href="https://wa.me/56974479565?text=Hola%20Agust%C3%ADn%2C%20necesito%20ayuda%20con%20el%20panel%20de%20Tecnifem" target="_blank" rel="noopener">¿Ayuda?</a>
 </div>
 <!-- Editor (Decap CMS). La configuración está en admin/config.yml. -->
-<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<!-- integrity: si alguien cambia el archivo en el CDN, el navegador no lo ejecuta (hash verificado en unpkg y jsDelivr el 17-11-2026). -->
+<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js" integrity="sha384-RWRzuHfiZSWCt3nEvG7B0v3cMgM1C2UuJmgBSL92GQh4uXmNSkbcthql/mNBqvjr" crossorigin="anonymous"></script>
 <script>
 // Traduce los textos que Decap deja en inglés (por ejemplo «Add producto» → «Agregar producto»).
 (function () {

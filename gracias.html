@@ -47,7 +47,7 @@ p{color:var(--suave);margin:0 0 14px}
     pendiente: ["⏳", "Pago pendiente", "Su pago aún no se confirma. Si ya pagó, le llegará el comprobante por correo en unos minutos. Ante cualquier duda, escríbanos.", "pendiente"],
     error: ["⚠️", "No pudimos confirmar el pago", "Escríbanos por WhatsApp con su número de orden y lo revisamos de inmediato.", "error"]
   };
-  var t = T[estado] || T.pendiente;
+  var t = Object.prototype.hasOwnProperty.call(T, estado) ? T[estado] : T.pendiente;
   document.getElementById("ico").textContent = t[0];
   document.getElementById("titulo").textContent = t[1];
   document.getElementById("texto").textContent = t[2];
