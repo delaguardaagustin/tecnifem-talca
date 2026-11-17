@@ -4,8 +4,8 @@ backend:
   name: github
   repo: delaguardaagustin/tecnifem-talca
   branch: panel
-  # PENDIENTE: dirección del servicio de inicio de sesión (Cloudflare Worker con la aplicación OAuth de GitHub).
-  # base_url: https://tecnifem-panel-login.<cuenta>.workers.dev
+  # Inicio de sesión: Cloudflare Worker de SENTRY-CODE (infra/decap-login) con la aplicación OAuth «Paneles SENTRY-CODE».
+  base_url: https://panel-login-sentry.delaguardaagustin.workers.dev
   commit_messages:
     create: "Panel: crea {{collection}} «{{slug}}»"
     update: "Panel: actualiza {{collection}} «{{slug}}»"
