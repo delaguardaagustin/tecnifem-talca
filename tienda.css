@@ -1,0 +1,50 @@
+/* Servicios por categoría, tienda y carro de Tecnifem */
+[hidden]{display:none!important}
+.chip{appearance:none;border:1px solid var(--linea);background:#fff;color:var(--osc);font:600 .92rem/1 var(--font);padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease}
+.chip:hover{border-color:var(--pri);color:var(--pri)}
+.chip.on{background:var(--osc);border-color:var(--osc);color:#fff}
+.s-filtros,.t-filtros{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.s-grilla{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.s-item{background:#fff;border:1px solid var(--linea);border-radius:18px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.s-item h3{font-size:1.08rem;color:var(--osc);line-height:1.25}
+.s-item p{margin:0;color:var(--suave);font-size:.95rem}
+.s-cot{margin-top:auto;padding-top:6px;font-weight:700;color:var(--wa);text-decoration:none}
+.s-cot:hover{text-decoration:underline}
+.t-cat{font:700 .72rem/1 var(--font);letter-spacing:1.4px;text-transform:uppercase;color:var(--pri)}
+.t-aviso{background:#fff7e0;border:1px solid #f0d58a;color:#6b5210;border-radius:12px;padding:10px 14px;margin:0 0 18px;font-size:.93rem}
+.t-grilla{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.t-prod{background:#fff;border:1px solid var(--linea);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.t-prod img,.t-sinfoto{width:100%;aspect-ratio:1;object-fit:cover;background:var(--fondo)}
+.t-sinfoto{display:grid;place-items:center}
+.t-sinfoto svg{width:56px;height:56px;stroke:var(--suave);fill:none;stroke-width:1.4;opacity:.6}
+.t-cuerpo{padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.t-cuerpo h3{font-size:1.02rem;color:var(--osc);line-height:1.25}
+.t-cuerpo p{margin:0;color:var(--suave);font-size:.9rem}
+.t-precio{font:800 1.2rem/1.2 var(--display);color:var(--osc);margin-top:auto;padding-top:4px}
+.t-agregar{min-height:44px;font-size:.92rem;padding:0 14px;width:100%}
+.t-agregar[disabled]{background:var(--fondo);border-color:var(--linea);color:var(--suave);cursor:not-allowed;transform:none;box-shadow:none}
+.t-prod.agotado img{filter:grayscale(1);opacity:.7}
+.t-vacio{color:var(--suave);grid-column:1/-1}
+.carro-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--osc);background:#fff;color:var(--osc);font:700 .95rem/1 var(--font);cursor:pointer}
+.carro-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.carro-btn span{min-width:22px;height:22px;border-radius:11px;background:var(--pri);color:#fff;font-size:.8rem;display:grid;place-items:center;padding:0 6px}
+.carro{position:fixed;inset:0;z-index:95;background:rgba(15,20,28,.5);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}
+.carro.ver{opacity:1;visibility:visible}
+.carro-caja{position:absolute;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;display:flex;flex-direction:column;overflow-y:auto;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(100%);transition:transform .3s ease}
+.carro.ver .carro-caja{transform:none}
+.carro-cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.carro-cab h3{font-size:1.4rem;color:var(--osc)}
+.carro-cab button{width:40px;height:40px;border-radius:50%;border:0;background:var(--fondo);font:400 1.5rem/1 system-ui,sans-serif;cursor:pointer;color:var(--osc)}
+.carro-lista{display:grid;gap:10px}
+.c-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;border-bottom:1px solid var(--linea);padding-bottom:10px}
+.c-item b{display:block;color:var(--osc);font-size:.95rem}.c-item span{color:var(--suave);font-size:.85rem}
+.c-cant{display:flex;align-items:center;gap:6px}
+.c-cant button{width:32px;height:32px;border-radius:50%;border:1px solid var(--linea);background:#fff;font-size:1.1rem;cursor:pointer;color:var(--osc)}
+.c-sub{white-space:nowrap}
+.carro-total{display:flex;justify-content:space-between;align-items:center;margin:16px 0;font-size:1.05rem}
+.carro-total b{font:800 1.4rem/1 var(--display);color:var(--osc)}
+.carro form{padding:0;border:0;box-shadow:none;border-radius:0}
+.carro form .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+@media (max-width:980px){.t-grilla{grid-template-columns:repeat(3,1fr)}.s-grilla{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.t-grilla{grid-template-columns:repeat(2,1fr);gap:10px}.s-grilla{grid-template-columns:1fr}.carro-btn{padding:0 10px}.t-cuerpo{padding:12px}.t-precio{font-size:1.05rem}}
+@media (prefers-reduced-motion:reduce){.carro,.carro-caja{transition:none}}

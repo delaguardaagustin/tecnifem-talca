@@ -1,0 +1,103 @@
+{
+  "aviso": {
+    "texto": "5,0 ★ en Google · 20 opiniones · Pide tu visita por WhatsApp"
+  },
+  "portada": {
+    "etiqueta": "Gasfitería a domicilio · Talca",
+    "titulo": "Tu problema de gasfitería, *resuelto*",
+    "bajada": "Gasfitería a domicilio en Talca. Cuéntanos qué pasa y coordinamos la visita por WhatsApp.",
+    "foto": "assets/hero.jpg"
+  },
+  "nosotros": {
+    "titulo": "Lo que dicen *sus clientes*",
+    "texto": "Quienes han contratado a Tecnifem destacan en Google la rapidez, el buen trato y el profesionalismo.",
+    "puntos": [
+      {
+        "titulo": "Respuesta rápida.",
+        "texto": "Resuelven en poco tiempo, según sus opiniones."
+      },
+      {
+        "titulo": "Buen trato.",
+        "texto": "La amabilidad se repite en sus opiniones."
+      },
+      {
+        "titulo": "Trabajo profesional.",
+        "texto": "Así lo describen quienes los contrataron."
+      }
+    ],
+    "foto": "assets/nos.jpg"
+  },
+  "pasos": [
+    {
+      "titulo": "Nos escribes o llamas",
+      "texto": "Cuéntanos qué pasa: una fuga, un destape, el calefont. Si puedes, manda una foto."
+    },
+    {
+      "titulo": "Te damos una respuesta",
+      "texto": "Revisamos tu caso y coordinamos la visita a tu domicilio."
+    },
+    {
+      "titulo": "Lo dejamos funcionando",
+      "texto": "Hacemos el trabajo y te explicamos qué se hizo."
+    }
+  ],
+  "galeria": {
+    "titulo": "Nuestros *trabajos*",
+    "bajada": "Algunos trabajos realizados por Tecnifem.",
+    "fotos": [
+      {
+        "foto": "assets/hero.jpg",
+        "texto": "Trabajo de Tecnifem"
+      },
+      {
+        "foto": "assets/nos.jpg",
+        "texto": "Trabajo de Tecnifem"
+      }
+    ]
+  },
+  "resenas": {
+    "nota": "5,0",
+    "cantidad": "20",
+    "lista": [
+      {
+        "texto": "Son personas muy responsables y educadas. Nos explicaron muy bien nuestro problema y como poder solucionarlo de buena manera, además informando cada detalle, educando sobre estado del agua y como podríamos mejorar aún más nuestra…",
+        "autor": "Maria A."
+      },
+      {
+        "texto": "¡Un servicio excelente, confiable y rápido! Dejé mi hogar en manos seguras. Trabajan con compromiso, profesionalismo y dedicación para entregar soluciones de calidad.",
+        "autor": "Josefa F."
+      },
+      {
+        "texto": "Quiero agradecer y recomendar 100 de 100 a Belén por su servicio. Inicie la mañana y busque servicio en Google, tenian 5 estrellas y llame, me responde muy amable me entrega tips para revisar mi calefond y listo, caso resuelto.",
+        "autor": "Fernando C."
+      }
+    ]
+  },
+  "preguntas": [
+    {
+      "pregunta": "¿Cómo pido una visita?",
+      "respuesta": "Por WhatsApp al +56 9 4521 3431. Cuéntanos el problema y, si puedes, envía una foto."
+    },
+    {
+      "pregunta": "¿En qué zona atienden?",
+      "respuesta": "En Talca y alrededores. Escríbenos con tu comuna y te confirmamos."
+    },
+    {
+      "pregunta": "¿Atienden urgencias?",
+      "respuesta": "Escríbenos o llama y te decimos cuándo podemos ir."
+    },
+    {
+      "pregunta": "¿Cuánto cuesta?",
+      "respuesta": "Depende del trabajo. Te damos el presupuesto al revisar tu caso."
+    }
+  ],
+  "contacto": {
+    "telefono": "+56 9 4521 3431",
+    "whatsapp": "56945213431",
+    "instagram": "tecnifem.cl",
+    "tiktok": "tecnifem.cl",
+    "horario_corto": "Lunes, 10:00 a 23:00",
+    "horario_detalle": "Martes a viernes, 10:00 a 22:00 · Sábado, 10:00 a 12:00",
+    "zona": "Talca"
+  }
+}

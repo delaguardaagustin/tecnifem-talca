@@ -1,0 +1,187 @@
+# Panel de administración de la página de Tecnifem (Decap CMS).
+# Los cambios se guardan como archivos en este mismo repositorio y GitHub Pages los publica en 1 o 2 minutos.
+backend:
+  name: github
+  repo: delaguardaagustin/tecnifem-talca
+  branch: panel
+  # PENDIENTE: dirección del servicio de inicio de sesión (Cloudflare Worker con la aplicación OAuth de GitHub).
+  # base_url: https://tecnifem-panel-login.<cuenta>.workers.dev
+  commit_messages:
+    create: "Panel: crea {{collection}} «{{slug}}»"
+    update: "Panel: actualiza {{collection}} «{{slug}}»"
+    delete: "Panel: borra {{collection}} «{{slug}}»"
+    uploadMedia: "Panel: sube {{path}}"
+    deleteMedia: "Panel: borra {{path}}"
+
+# Para probar en el computador sin iniciar sesión: correr «npx decap-server» en esta carpeta.
+local_backend: true
+
+locale: es
+publish_mode: simple
+site_url: https://delaguardaagustin.github.io/tecnifem-talca/
+display_url: https://delaguardaagustin.github.io/tecnifem-talca/
+logo_url: ../assets/logo.jpg
+media_folder: assets/fotos
+public_folder: assets/fotos
+
+collections:
+  # ---------------- TIENDA ----------------
+  - name: tienda
+    label: "🛒 Tienda"
+    editor: { preview: false }
+    files:
+      - name: productos
+        label: Productos (precios, fotos y stock)
+        file: contenido/productos.json
+        format: json
+        fields:
+          - label: Productos
+            name: productos
+            widget: list
+            label_singular: producto
+            summary: "{{fields.nombre}} · ${{fields.precio}} · {{fields.categoria}}"
+            add_to_top: true
+            fields:
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Categoría, name: categoria, widget: string, hint: "Escríbala igual en todos los productos de la misma categoría. Ej: Repuestos de calefont, Gasfitería, Herramientas." }
+              - { label: "Precio (en pesos, sin puntos)", name: precio, widget: number, value_type: int, min: 0, hint: "Si deja 0, se muestra «Precio por confirmar» y el botón lleva a WhatsApp." }
+              - { label: Foto, name: foto, widget: image, required: false, choose_url: false, hint: "Foto cuadrada, idealmente de menos de 1 MB." }
+              - { label: Descripción, name: descripcion, widget: text, required: false }
+              - { label: "Agotado (sin stock)", name: agotado, widget: boolean, default: false, required: false, hint: "Si lo marca, el producto sigue a la vista pero no se puede comprar." }
+      - name: ajustes
+        label: Ajustes de la tienda
+        file: contenido/tienda.json
+        format: json
+        fields:
+          - { label: "Tienda activa (si la apaga, la tienda desaparece de la página)", name: activa, widget: boolean, default: true }
+          - { label: "Título (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
+          - { label: Texto bajo el título, name: bajada, widget: text }
+          - { label: Retiro y despacho, name: entrega, widget: text }
+          - { label: "Aviso (déjelo vacío para no mostrarlo)", name: aviso_ejemplo, widget: string, required: false }
+
+  # ---------------- SERVICIOS ----------------
+  - name: servicios
+    label: "🔧 Servicios"
+    editor: { preview: false }
+    files:
+      - name: lista
+        label: Servicios
+        file: contenido/servicios.json
+        format: json
+        fields:
+          - { label: "Título de la sección (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
+          - { label: Texto junto al título, name: bajada, widget: text }
+          - { label: Nota bajo los servicios, name: nota, widget: string, required: false }
+          - label: Servicios
+            name: servicios
+            widget: list
+            label_singular: servicio
+            summary: "{{fields.nombre}} · {{fields.categoria}}"
+            fields:
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Categoría, name: categoria, widget: string, hint: "Escríbala igual en los servicios de la misma categoría. Ej: Gasfitería, Calefont y gas, Redes de agua, Accesibilidad." }
+              - { label: Descripción corta, name: descripcion, widget: text, required: false }
+              - { label: "Principal (aparece primero)", name: destacado, widget: boolean, default: false, required: false }
+              - { label: "Visible en la página", name: visible, widget: boolean, default: true, required: false, hint: "Desmárquelo para ocultar un servicio sin borrarlo." }
+
+  # ---------------- PÁGINA ----------------
+  - name: pagina
+    label: "📝 Textos, fotos y contacto"
+    editor: { preview: false }
+    files:
+      - name: textos
+        label: Página completa
+        file: contenido/sitio.json
+        format: json
+        fields:
+          - label: Franja superior
+            name: aviso
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Texto (déjelo vacío para ocultar la franja)", name: texto, widget: string, required: false }
+          - label: Portada
+            name: portada
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Etiqueta superior, name: etiqueta, widget: string }
+              - { label: "Título (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
+              - { label: Texto bajo el título, name: bajada, widget: text }
+              - { label: Foto de fondo, name: foto, widget: image, choose_url: false }
+          - label: Nosotros
+            name: nosotros
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+              - { label: Foto, name: foto, widget: image, choose_url: false }
+              - label: Puntos destacados
+                name: puntos
+                widget: list
+                label_singular: punto
+                summary: "{{fields.titulo}}"
+                fields:
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Texto, name: texto, widget: string }
+          - label: Cómo funciona (pasos)
+            name: pasos
+            widget: list
+            collapsed: true
+            label_singular: paso
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Galería de trabajos
+            name: galeria
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
+              - { label: Texto, name: bajada, widget: string, required: false }
+              - label: Fotos
+                name: fotos
+                widget: list
+                label_singular: foto
+                summary: "{{fields.texto}}"
+                fields:
+                  - { label: Foto, name: foto, widget: image, choose_url: false }
+                  - { label: "Descripción breve", name: texto, widget: string, required: false }
+          - label: Opiniones de Google
+            name: resenas
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Nota en Google (ej: 5,0)", name: nota, widget: string }
+              - { label: "Cantidad de opiniones", name: cantidad, widget: string }
+              - label: "Opiniones destacadas (se muestran las 3 primeras; copie el texto tal como está en Google)"
+                name: lista
+                widget: list
+                label_singular: opinión
+                summary: "{{fields.autor}}"
+                fields:
+                  - { label: Texto de la opinión, name: texto, widget: text }
+                  - { label: "Nombre (nombre y la inicial del apellido)", name: autor, widget: string }
+          - label: Preguntas frecuentes
+            name: preguntas
+            widget: list
+            collapsed: true
+            label_singular: pregunta
+            summary: "{{fields.pregunta}}"
+            fields:
+              - { label: Pregunta, name: pregunta, widget: string }
+              - { label: Respuesta, name: respuesta, widget: text }
+          - label: Contacto, horario y redes
+            name: contacto
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Teléfono (como se muestra, ej: +56 9 4521 3431)", name: telefono, widget: string }
+              - { label: "WhatsApp (solo números, con 56, ej: 56945213431)", name: whatsapp, widget: string }
+              - { label: "Instagram (sin @)", name: instagram, widget: string, required: false }
+              - { label: "TikTok (sin @)", name: tiktok, widget: string, required: false }
+              - { label: Horario corto (franja superior), name: horario_corto, widget: string }
+              - { label: Resto del horario, name: horario_detalle, widget: string }
+              - { label: Zona de atención, name: zona, widget: string }
