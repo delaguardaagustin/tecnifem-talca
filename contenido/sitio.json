@@ -1,0 +1,154 @@
+{
+  "aviso": {
+    "texto": "⚡ Mujeres que resuelven · 5,0 ★ en Google · Talca y alrededores"
+  },
+  "portada": {
+    "etiqueta": "Gasfitería y calefont · Talca",
+    "titulo": "Mujeres que *resuelven*",
+    "bajada": "Somos Tecnifem: reparamos fugas, calefont y redes de agua y gas en Talca y alrededores. Escríbenos y coordinamos la visita.",
+    "foto": "assets/fotos/trabajo-demolicion.jpg",
+    "foto2": "assets/fotos/calefont-revision.jpg"
+  },
+  "nosotros": {
+    "titulo": "Gasfitería hecha *por mujeres*",
+    "texto": "Tecnifem es un equipo de mujeres gasfíter en Talca. Sus clientes destacan en Google la rapidez, el buen trato y que les explican cada detalle del trabajo.",
+    "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
+    "puntos": [
+      {
+        "titulo": "Respuesta rápida.",
+        "texto": "Resuelven en poco tiempo, según sus opiniones en Google."
+      },
+      {
+        "titulo": "Te explicamos todo.",
+        "texto": "Qué pasó, cómo se arregló y cómo evitar que vuelva a pasar."
+      },
+      {
+        "titulo": "Trabajo prolijo.",
+        "texto": "Dejamos funcionando y limpio."
+      }
+    ]
+  },
+  "pasos": [
+    {
+      "titulo": "Nos escribes o llamas",
+      "texto": "Cuéntanos qué pasa: una fuga, un destape, el calefont. Si puedes, manda una foto."
+    },
+    {
+      "titulo": "Te damos una respuesta",
+      "texto": "Revisamos tu caso y coordinamos la visita a tu domicilio."
+    },
+    {
+      "titulo": "Lo dejamos funcionando",
+      "texto": "Hacemos el trabajo y te explicamos qué se hizo."
+    }
+  ],
+  "videos": {
+    "titulo": "Míranos *trabajar*",
+    "bajada": "Videos de nuestros trabajos y consejos en Instagram y TikTok.",
+    "lista": [
+      {
+        "titulo": "¿Se te apaga el calefont?",
+        "enlace": "https://www.instagram.com/reel/DbYllBgxtsR/",
+        "portada": "assets/fotos/video-se-apaga-calefont.jpg"
+      },
+      {
+        "titulo": "«El otro gasfíter me cobraba más barato»",
+        "enlace": "https://www.instagram.com/reel/DcSWaFNRj0f/",
+        "portada": "assets/fotos/video-otro-gasfiter.jpg"
+      },
+      {
+        "titulo": "Calefont y gas: trabajo en terreno",
+        "enlace": "https://www.instagram.com/reel/DZ_D29Xxso9/",
+        "portada": "assets/fotos/trabajo-calefont-gas.jpg"
+      },
+      {
+        "titulo": "¿Qué haces con tus pilas viejas?",
+        "enlace": "https://www.instagram.com/reel/DbM8n93OzDE/",
+        "portada": "assets/fotos/video-pilas.jpg"
+      }
+    ]
+  },
+  "galeria": {
+    "titulo": "Nuestros *trabajos*",
+    "bajada": "Algunos trabajos de Tecnifem en Talca.",
+    "fotos": [
+      {
+        "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
+        "texto": "Instalación de lavamanos dobles"
+      },
+      {
+        "foto": "assets/fotos/trabajo-demolicion.jpg",
+        "texto": "Apertura de muro para reparar cañerías"
+      },
+      {
+        "foto": "assets/fotos/canerias-calefont.jpg",
+        "texto": "Cañerías de calefont"
+      },
+      {
+        "foto": "assets/fotos/trabajo-canerias.jpg",
+        "texto": "Desagüe bajo lavaplatos"
+      },
+      {
+        "foto": "assets/fotos/lavamanos-instalado.jpg",
+        "texto": "Lavamanos y grifería"
+      },
+      {
+        "foto": "assets/fotos/trabajo-lavaplatos.jpg",
+        "texto": "Instalación de lavaplatos"
+      },
+      {
+        "foto": "assets/fotos/calefont-revision.jpg",
+        "texto": "Revisión de calefont"
+      },
+      {
+        "foto": "assets/fotos/trabajo-desague.jpg",
+        "texto": "Reparación de desagüe"
+      }
+    ]
+  },
+  "resenas": {
+    "nota": "5,0",
+    "cantidad": "20",
+    "lista": [
+      {
+        "texto": "Son personas muy responsables y educadas. Nos explicaron muy bien nuestro problema y como poder solucionarlo de buena manera, además informando cada detalle, educando sobre estado del agua y como podríamos mejorar aún más nuestra…",
+        "autor": "Maria A."
+      },
+      {
+        "texto": "¡Un servicio excelente, confiable y rápido! Dejé mi hogar en manos seguras. Trabajan con compromiso, profesionalismo y dedicación para entregar soluciones de calidad.",
+        "autor": "Josefa F."
+      },
+      {
+        "texto": "Quiero agradecer y recomendar 100 de 100 a Belén por su servicio. Inicie la mañana y busque servicio en Google, tenian 5 estrellas y llame, me responde muy amable me entrega tips para revisar mi calefond y listo, caso resuelto.",
+        "autor": "Fernando C."
+      }
+    ]
+  },
+  "preguntas": [
+    {
+      "pregunta": "¿Cómo pido una visita?",
+      "respuesta": "Por WhatsApp al +56 9 4521 3431. Cuéntanos el problema y, si puedes, envía una foto."
+    },
+    {
+      "pregunta": "¿En qué zona atienden?",
+      "respuesta": "En Talca y alrededores. Escríbenos con tu comuna y te confirmamos."
+    },
+    {
+      "pregunta": "¿Atienden urgencias?",
+      "respuesta": "Escríbenos o llama y te decimos cuándo podemos ir."
+    },
+    {
+      "pregunta": "¿Cuánto cuesta?",
+      "respuesta": "Depende del trabajo. Te damos el presupuesto al revisar tu caso."
+    }
+  ],
+  "contacto": {
+    "telefono": "+56 9 4521 3431",
+    "whatsapp": "56945213431",
+    "instagram": "tecnifem.cl",
+    "tiktok": "tecnifem.cl",
+    "horario_corto": "Lunes, 10:00 a 23:00",
+    "horario_detalle": "Martes a viernes, 10:00 a 22:00 · Sábado, 10:00 a 12:00",
+    "zona": "Talca"
+  }
+}

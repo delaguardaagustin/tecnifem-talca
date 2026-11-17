@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "nombre": "Ejemplo: membrana de calefont",
+      "categoria": "Repuestos de calefont",
+      "precio": 0,
+      "foto": "",
+      "descripcion": "Producto de ejemplo para mostrar la tienda. Se reemplaza desde el panel.",
+      "agotado": false
+    },
+    {
+      "nombre": "Ejemplo: llave de paso",
+      "categoria": "Gasfitería",
+      "precio": 0,
+      "foto": "",
+      "descripcion": "Producto de ejemplo para mostrar la tienda. Se reemplaza desde el panel.",
+      "agotado": false
+    },
+    {
+      "nombre": "Ejemplo: llave Stillson",
+      "categoria": "Herramientas",
+      "precio": 0,
+      "foto": "",
+      "descripcion": "Producto de ejemplo para mostrar la tienda. Se reemplaza desde el panel.",
+      "agotado": true
+    }
+  ]
+}
