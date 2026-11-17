@@ -62,7 +62,7 @@
     },
     {
       "nombre": "Flexible de agua malla acero 40 cm",
-      "categoria": "Gasfitería",
+      "categoria": "Baño y cocina",
       "precio": 3290,
       "precio_anterior": 0,
       "marca": "",
@@ -74,7 +74,7 @@
     },
     {
       "nombre": "Llave de paso de bola 1/2\"",
-      "categoria": "Gasfitería",
+      "categoria": "Baño y cocina",
       "precio": 5490,
       "precio_anterior": 0,
       "marca": "",
@@ -86,7 +86,7 @@
     },
     {
       "nombre": "Sifón botella para lavamanos",
-      "categoria": "Gasfitería",
+      "categoria": "Baño y cocina",
       "precio": 4990,
       "precio_anterior": 0,
       "marca": "",
@@ -98,7 +98,7 @@
     },
     {
       "nombre": "Kit interno de estanque WC",
-      "categoria": "Gasfitería",
+      "categoria": "Baño y cocina",
       "precio": 12990,
       "precio_anterior": 15990,
       "marca": "",
@@ -110,7 +110,7 @@
     },
     {
       "nombre": "Cinta teflón 3/4\" x 10 m",
-      "categoria": "Gasfitería",
+      "categoria": "Baño y cocina",
       "precio": 890,
       "precio_anterior": 0,
       "marca": "",

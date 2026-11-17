@@ -4,8 +4,8 @@
   "nota": "El valor depende del trabajo; se informa al revisar tu caso por WhatsApp.",
   "servicios": [
     {
-      "nombre": "Gasfitería general",
-      "categoria": "Gasfitería",
+      "nombre": "Reparaciones generales de agua",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Reparaciones e instalaciones de agua en casas, departamentos y locales.",
       "foto": "assets/fotos/trabajo-demolicion.jpg",
       "video": "",
@@ -23,7 +23,7 @@
     },
     {
       "nombre": "Reparación de fugas visibles",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Reparamos filtraciones a la vista en llaves, cañerías y artefactos.",
       "foto": "assets/fotos/trabajo-desague.jpg",
       "video": "",
@@ -59,7 +59,7 @@
     },
     {
       "nombre": "Instalación de artefactos sanitarios",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Instalación de WC, lavamanos, lavaplatos, duchas y tinas.",
       "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
       "video": "",
@@ -68,7 +68,7 @@
     },
     {
       "nombre": "Cambio de sifón",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Cambio de sifones de lavamanos y lavaplatos.",
       "foto": "assets/fotos/trabajo-canerias.jpg",
       "video": "",
@@ -77,7 +77,7 @@
     },
     {
       "nombre": "Cambio de llaves",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Cambio de llaves de paso, monomandos y griferías.",
       "foto": "assets/fotos/lavamanos-instalado.jpg",
       "video": "",
@@ -86,7 +86,7 @@
     },
     {
       "nombre": "Cambio de kit interno de estanque WC",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Cambio del mecanismo interno del estanque cuando el WC pierde agua o no carga.",
       "foto": "",
       "video": "",
@@ -95,7 +95,7 @@
     },
     {
       "nombre": "Destapes locales",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Destape de lavamanos, lavaplatos, duchas y desagües cercanos.",
       "foto": "",
       "video": "",
@@ -104,7 +104,7 @@
     },
     {
       "nombre": "Restauración de artefactos",
-      "categoria": "Gasfitería",
+      "categoria": "Fugas y reparaciones",
       "descripcion": "Restauración de artefactos sanitarios para volver a usarlos.",
       "foto": "",
       "video": "",
@@ -292,7 +292,7 @@
       "visible": true
     },
     {
-      "nombre": "Asesoría en mantenimiento básico de gasfitería para el hogar",
+      "nombre": "Asesoría en mantenimiento básico del hogar",
       "categoria": "Asesorías y proyectos",
       "descripcion": "Te enseñamos el mantenimiento básico para evitar problemas en casa.",
       "foto": "",
@@ -312,7 +312,7 @@
     {
       "nombre": "Trabajos para Mercado Público",
       "categoria": "Asesorías y proyectos",
-      "descripcion": "Trabajos de gasfitería para instituciones que compran por Mercado Público.",
+      "descripcion": "Trabajos de agua y gas para instituciones que compran por Mercado Público.",
       "foto": "",
       "video": "",
       "destacado": false,
