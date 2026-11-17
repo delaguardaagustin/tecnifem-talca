@@ -8,7 +8,7 @@
       "marca": "Junkers",
       "compatible": "Junkers W10 y WR10 (10 litros)",
       "codigo": "MEM-JK10",
-      "foto": "assets/productos/membrana-calefont.jpg",
+      "foto": "assets/fotos/producto-membrana-calefont.jpg",
       "descripcion": "Membrana de goma para la válvula de agua. Se cambia cuando el calefont no enciende al abrir el agua.",
       "agotado": false
     },
@@ -20,7 +20,7 @@
       "marca": "Universal",
       "compatible": "Calefont con piloto: Splendid, Mademsa, Neckar",
       "codigo": "TER-UNI60",
-      "foto": "assets/productos/termocupla.jpg",
+      "foto": "assets/fotos/producto-termocupla.jpg",
       "descripcion": "Mantiene encendido el piloto. Incluye adaptadores.",
       "agotado": false
     },
@@ -32,7 +32,7 @@
       "marca": "Splendid",
       "compatible": "Splendid de encendido por chispero",
       "codigo": "CHI-SPL",
-      "foto": "assets/productos/chispero.jpg",
+      "foto": "assets/fotos/producto-chispero.jpg",
       "descripcion": "Encendido piezoeléctrico para calefont de encendido manual.",
       "agotado": false
     },
@@ -44,7 +44,7 @@
       "marca": "Neckar",
       "compatible": "Neckar de 2 pilas grandes (tipo D)",
       "codigo": "POR-NK",
-      "foto": "assets/productos/portapilas.jpg",
+      "foto": "assets/fotos/producto-portapilas.jpg",
       "descripcion": "Porta pilas con cables para calefont de encendido automático.",
       "agotado": false
     },
@@ -56,7 +56,7 @@
       "marca": "Mademsa",
       "compatible": "Mademsa de 10 litros",
       "codigo": "VAL-MD10",
-      "foto": "assets/productos/valvula-gas.jpg",
+      "foto": "assets/fotos/producto-valvula-gas.jpg",
       "descripcion": "Válvula de gas completa con regulador.",
       "agotado": true
     },
@@ -68,7 +68,7 @@
       "marca": "",
       "compatible": "Lavamanos, lavaplatos y calefont",
       "codigo": "FLX-40",
-      "foto": "assets/productos/flexible.jpg",
+      "foto": "assets/fotos/producto-flexible.jpg",
       "descripcion": "Flexible con malla de acero inoxidable, 1/2\" hembra-hembra.",
       "agotado": false
     },
@@ -80,7 +80,7 @@
       "marca": "",
       "compatible": "Cañería de 1/2\"",
       "codigo": "LLP-12",
-      "foto": "assets/productos/llave-paso.jpg",
+      "foto": "assets/fotos/producto-llave-paso.jpg",
       "descripcion": "Llave de paso de bronce con manilla, para cortar el agua de un artefacto.",
       "agotado": false
     },
@@ -92,7 +92,7 @@
       "marca": "",
       "compatible": "Lavamanos estándar",
       "codigo": "SIF-LM",
-      "foto": "assets/productos/sifon.jpg",
+      "foto": "assets/fotos/producto-sifon.jpg",
       "descripcion": "Sifón de PVC tipo botella con salida a muro.",
       "agotado": false
     },
@@ -104,7 +104,7 @@
       "marca": "",
       "compatible": "La mayoría de los estanques de WC",
       "codigo": "KIT-WC",
-      "foto": "assets/productos/kit-estanque.jpg",
+      "foto": "assets/fotos/producto-kit-estanque.jpg",
       "descripcion": "Válvula de llenado y de descarga para el estanque del WC. Para cuando el WC pierde agua o no carga.",
       "agotado": false
     },
@@ -116,7 +116,7 @@
       "marca": "",
       "compatible": "Uniones con hilo de agua",
       "codigo": "TEF-34",
-      "foto": "assets/productos/teflon.jpg",
+      "foto": "assets/fotos/producto-teflon.jpg",
       "descripcion": "Para sellar uniones con hilo y evitar filtraciones.",
       "agotado": false
     },
@@ -128,7 +128,7 @@
       "marca": "",
       "compatible": "Cañerías de hasta 2\"",
       "codigo": "STI-14",
-      "foto": "assets/productos/llave-stillson.jpg",
+      "foto": "assets/fotos/producto-llave-stillson.jpg",
       "descripcion": "Llave para tubos de acero forjado, mordaza ajustable.",
       "agotado": false
     },
@@ -140,7 +140,7 @@
       "marca": "",
       "compatible": "Cañerías PPR de 20, 25 y 32 mm",
       "codigo": "TERMO-PPR",
-      "foto": "assets/productos/termofusora.jpg",
+      "foto": "assets/fotos/producto-termofusora.jpg",
       "descripcion": "Termofusora con dados de 20, 25 y 32 mm para unir cañerías de PPR.",
       "agotado": false
     }
