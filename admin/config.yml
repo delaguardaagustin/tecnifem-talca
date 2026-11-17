@@ -3,7 +3,7 @@
 backend:
   name: github
   repo: delaguardaagustin/tecnifem-talca
-  branch: panel
+  branch: main
   # Inicio de sesión: Cloudflare Worker de SENTRY-CODE (infra/decap-login) con la aplicación OAuth «Paneles SENTRY-CODE».
   base_url: https://panel-login-sentry.delaguardaagustin.workers.dev
   commit_messages:
