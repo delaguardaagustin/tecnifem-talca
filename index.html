@@ -97,6 +97,19 @@ header{position:sticky;top:0;z-index:30;background:#fff;box-shadow:0 6px 18px -1
 .promo b{font:900 clamp(1.3rem,2.6vw,1.8rem)/1 var(--display);font-stretch:85%;text-transform:uppercase;max-width:13ch}
 .promo span{align-self:flex-start;background:var(--cal-osc);color:#fff;font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:999px}
 .promo:hover span{background:var(--navy)}
+/* Pestañas: el inicio muestra lo principal; tienda, galería, videos y nosotras van en su propia vista */
+body[data-vista="inicio"] [data-tab]{display:none!important}
+body:not([data-vista="inicio"]) .v-inicio{display:none!important}
+body[data-vista="tienda"] [data-tab]:not([data-tab="tienda"]),body[data-vista="galeria"] [data-tab]:not([data-tab="galeria"]),body[data-vista="videos"] [data-tab]:not([data-tab="videos"]),body[data-vista="nosotras"] [data-tab]:not([data-tab="nosotras"]){display:none!important}
+body:not([data-vista="inicio"]) main{min-height:60vh;padding-top:18px}
+.menu a.on{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:3px}
+.repuesto-s{padding:8px 0 40px}
+.repuesto{display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:16px;text-decoration:none;color:var(--navy);background:linear-gradient(90deg,#e8f9fc,#fff);border:1px solid var(--linea)}
+.repuesto .rp-ico{font-size:2rem}.repuesto .rp-txt{flex:1;min-width:0}.repuesto b{display:block;font:900 clamp(1.2rem,2.6vw,1.6rem)/1.1 var(--display);font-stretch:85%;text-transform:uppercase}
+.repuesto .rp-txt span{color:var(--suave);font-size:.95rem}
+.repuesto .rp-btn{flex:none;background:var(--cal-osc);color:#fff;font-weight:700;padding:10px 16px;border-radius:999px}
+.repuesto:hover .rp-btn{background:var(--navy)}
+@media (max-width:640px){.repuesto{flex-wrap:wrap}.repuesto .rp-btn{width:100%;text-align:center}}
 .pagos-f{display:flex;flex-wrap:wrap;gap:6px}.pagos-f span{border:1px solid var(--linea);border-radius:6px;padding:4px 8px;font-size:.78rem;font-weight:700;color:var(--navy);background:#fff}
 .nosotros{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
 .nosotros .foto{position:relative}
@@ -230,18 +243,18 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
     <a class="btn btn-wa" href="https://wa.me/56945213431?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20necesito%20ayuda" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a>
   </div>
   <div class="barra"><div class="wrap barra-in">
-    <nav class="menu" aria-label="Secciones"><a href="#tienda" id="m-tienda" hidden>Tienda</a><a href="#servicios">Servicios</a><a href="#nosotros">Nosotras</a><a href="#trabajos">Trabajos</a><a href="#contacto">Contacto</a></nav>
+    <nav class="menu" aria-label="Secciones"><a href="#inicio" data-v="inicio">Inicio</a><a href="#servicios" data-v="inicio">Servicios</a><a href="#tienda" id="m-tienda" data-v="tienda" hidden>Tienda</a><a href="#galeria" data-v="galeria">Galería</a><a href="#videos" data-v="videos">Videos</a><a href="#nosotras" data-v="nosotras">Nosotras</a><a href="#contacto" data-v="inicio">Contacto</a></nav>
     <form class="buscador" id="buscador" role="search"><label class="sr" for="q">Buscar en la página</label><input id="q" type="search" placeholder="Buscar repuesto o servicio…" autocomplete="off"><button type="submit" aria-label="Buscar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></form>
     <button type="button" class="carro-btn" id="carro-btn" hidden aria-label="Ver carro de compra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.400 11h10.800L21 7H6.200"/><circle cx="9" cy="19.500" r="1.500"/><circle cx="17" cy="19.500" r="1.500"/></svg>Carro<span id="carro-n" hidden>0</span></button>
   </div></div>
 </header>
 
 <main id="inicio">
-<section class="portada" style="padding:0">
+<section class="portada v-inicio" style="padding:0">
   <div class="wrap">
     <div>
       <span class="lema"><span id="c-eslogan">Hecho por mujeres</span></span>
-      <span class="ojo" id="c-ojo">Agua, gas y calefont · Talca</span>
+      <span class="ojo" id="c-ojo">Gasfitería y calefont · Talca</span>
       <h1 id="c-titulo">Mujeres que <em>resuelven</em></h1>
       <ul class="confianza" id="c-confianza" hidden></ul>
       <p id="c-bajada">Reparamos fugas, calefont y redes de agua y gas en Talca y alrededores. Escríbanos y coordinamos la visita.</p>
@@ -258,12 +271,64 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
   </div>
 </section>
 
-<section class="promos"><div class="wrap promos-in">
-  <a class="promo" style="--img:url('assets/fotos/trabajo-calefont-gas.jpg')" href="https://wa.me/56945213431?text=Hola%2C%20tengo%20una%20fuga%20o%20el%20calefont%20no%20funciona" target="_blank" rel="noopener"><b>¿Fuga o calefont que falla?</b><span>Le ayudamos hoy →</span></a>
-  <a class="promo" style="--img:url('assets/fotos/canerias-calefont.jpg')" href="#tienda" id="promo-tienda"><b>Repuestos para su casa</b><span>Ver la tienda →</span></a>
+<section id="servicios" class="v-inicio"><div class="wrap">
+  <div class="cab aparece"><div><span class="ojo">Servicios</span><h2 id="s-titulo">Lo que <em>hacemos</em></h2></div><p id="s-bajada">Elige el trabajo que necesitas y te dejamos el mensaje listo para WhatsApp.</p></div>
+  <div class="s-filtros" id="s-filtros"></div>
+  <div class="s-grilla" id="s-lista">
+    <article class="s-item"><span class="t-cat">Fugas y reparaciones</span><h3>Reparaciones generales de agua</h3><p>Reparaciones e instalaciones de agua en casas, departamentos y locales.</p><a class="s-cot" data-s="Reparaciones generales de agua" href="#">Cotizar por WhatsApp →</a></article>
+    <article class="s-item"><span class="t-cat">Calefont y gas</span><h3>Reparación y mantención de calefont</h3><p>Revisión, mantención y reparación de calefont.</p><a class="s-cot" data-s="Reparación y mantención de calefont" href="#">Cotizar por WhatsApp →</a></article>
+    <article class="s-item"><span class="t-cat">Redes de agua</span><h3>Instalación de redes de agua</h3><p>Instalación de redes de agua fría y caliente.</p><a class="s-cot" data-s="Instalación de redes de agua" href="#">Cotizar por WhatsApp →</a></article>
+  </div>
+  <p class="nota" id="s-nota">El valor depende del trabajo; se informa al revisar tu caso por WhatsApp.</p>
 </div></section>
 
-<section id="tienda" class="tienda-s" hidden>
+<section class="v-inicio repuesto-s"><div class="wrap"><a class="repuesto" id="promo-tienda" href="#tienda"><span class="rp-ico" aria-hidden="true">🔧</span><span class="rp-txt"><b>¿Necesita algún repuesto?</b><span>Membranas, termocuplas, llaves y más, con despacho o retiro en Talca.</span></span><span class="rp-btn">Ver la tienda →</span></a></div></section>
+
+<section class="gris v-inicio" id="pasos"><div class="wrap">
+  <div class="cab aparece"><div><span class="ojo">Así de simple</span><h2>Cómo <em>trabajamos</em></h2></div><p>Todo se coordina por WhatsApp o por teléfono.</p></div>
+  <ol class="pasos aparece" id="p-pasos"><li><h3>Nos escribes o llamas</h3><p>Cuéntanos qué pasa y, si puedes, manda una foto.</p></li><li><h3>Coordinamos la visita</h3><p>Revisamos tu caso y vamos a tu domicilio.</p></li><li><h3>Lo dejamos funcionando</h3><p>Hacemos el trabajo y te explicamos qué se hizo.</p></li></ol>
+</div></section>
+
+<section class="v-inicio" id="opiniones"><div class="wrap">
+  <div class="cab aparece"><div><span class="ojo">Opiniones</span><h2>Lo que dicen <em>sus clientes</em></h2></div><p>Opiniones publicadas en la ficha de Google del negocio.</p></div>
+  <div class="resenas aparece" id="r-lista"><div class="nota-g"><b class="r-nota">5,0</b><span class="est">★★★★★</span><span><span class="r-cant">20</span> opiniones en Google</span></div></div>
+</div></section>
+
+<section id="contacto" class="gris v-inicio"><div class="wrap contacto">
+  <div class="aparece">
+    <span class="ojo">Contacto</span>
+    <h2>Hablemos <em>hoy</em></h2>
+    <div class="datos">
+      <div class="dato"><svg aria-hidden="true"><use href="#tel"/></svg><div><b><a href="tel:+56945213431">+56 9 4521 3431</a></b><span>WhatsApp y llamadas</span></div></div>
+      <div class="dato"><svg aria-hidden="true"><use href="#reloj"/></svg><div><b id="c-hor1">Lunes, 10:00 a 23:00</b><span id="c-hor2">Martes a viernes, 10:00 a 22:00 · Sábado, 10:00 a 12:00</span></div></div>
+      <div class="dato"><svg aria-hidden="true"><use href="#pin"/></svg><div><b>Atención a domicilio</b><span id="c-zona">Talca</span></div></div>
+    </div>
+    <iframe class="mapa" title="Mapa de la zona de atención de Tecnifem" loading="lazy" src="https://www.google.com/maps?q=Talca%2C%20Chile&z=12&output=embed"></iframe>
+  </div>
+  <form id="fCot" class="aparece" novalidate>
+    <h3>Pide tu visita</h3>
+    <label>Tu nombre<input id="cNombre" autocomplete="name"></label>
+    <label>¿Qué necesitas?
+      <select id="cServ"><option value="">— Elige uno —</option><option>Fugas y reparaciones</option><option>Calefont y gas</option><option>Redes de agua</option><option>Accesibilidad</option><option>Repuestos</option><option>Otro trabajo</option></select></label>
+    <label>Comuna o dirección<input id="cDir" placeholder="Ej: Talca, sector oriente"></label>
+    <label>Cuéntanos más (opcional)<textarea id="cMsg"></textarea></label>
+    <p class="aviso" id="cAviso" role="status"></p>
+    <button class="btn btn-wa" type="submit"><svg aria-hidden="true"><use href="#wa"/></svg>Enviar por WhatsApp</button>
+    <small>Se abre WhatsApp con el mensaje listo. Esta página no guarda tus datos.</small>
+  </form>
+</div></section>
+
+<section id="preguntas" class="v-inicio"><div class="wrap preguntas">
+  <div class="lado aparece">
+    <span class="ojo">Preguntas frecuentes</span>
+    <h2>Antes de <em>llamar</em></h2>
+    <p>Si tu duda no está aquí, escríbenos y te respondemos.</p>
+    <a class="btn btn-wa" href="https://wa.me/56945213431?text=Hola%2C%20tengo%20una%20consulta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Preguntar por WhatsApp</a>
+  </div>
+  <div class="aparece" id="f-preguntas"><details open><summary>¿Cómo pido una visita?</summary><p>Por WhatsApp al +56 9 4521 3431. Cuéntanos el problema y, si puedes, envía una foto.</p></details></div>
+</div></section>
+
+<section id="tienda" class="tienda-s" data-tab="tienda" hidden>
   <div class="t-banner"><div class="wrap">
     <span class="ojo">Tienda en línea · Talca</span>
     <h2 id="t-titulo">Repuestos y <em>productos</em></h2>
@@ -293,18 +358,7 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
   </div>
 </section>
 
-<section id="servicios"><div class="wrap">
-  <div class="cab aparece"><div><span class="ojo">Servicios</span><h2 id="s-titulo">Lo que <em>hacemos</em></h2></div><p id="s-bajada">Elige el trabajo que necesitas y te dejamos el mensaje listo para WhatsApp.</p></div>
-  <div class="s-filtros" id="s-filtros"></div>
-  <div class="s-grilla" id="s-lista">
-    <article class="s-item"><span class="t-cat">Fugas y reparaciones</span><h3>Reparaciones generales de agua</h3><p>Reparaciones e instalaciones de agua en casas, departamentos y locales.</p><a class="s-cot" data-s="Reparaciones generales de agua" href="#">Cotizar por WhatsApp →</a></article>
-    <article class="s-item"><span class="t-cat">Calefont y gas</span><h3>Reparación y mantención de calefont</h3><p>Revisión, mantención y reparación de calefont.</p><a class="s-cot" data-s="Reparación y mantención de calefont" href="#">Cotizar por WhatsApp →</a></article>
-    <article class="s-item"><span class="t-cat">Redes de agua</span><h3>Instalación de redes de agua</h3><p>Instalación de redes de agua fría y caliente.</p><a class="s-cot" data-s="Instalación de redes de agua" href="#">Cotizar por WhatsApp →</a></article>
-  </div>
-  <p class="nota" id="s-nota">El valor depende del trabajo; se informa al revisar tu caso por WhatsApp.</p>
-</div></section>
-
-<section id="nosotros"><div class="wrap nosotros">
+<section id="nosotros" data-tab="nosotras"><div class="wrap nosotros">
   <div class="foto aparece">
     <img id="n-foto" src="assets/fotos/trabajo-lavamanos-dobles.jpg" alt="Trabajo de Tecnifem" loading="lazy">
     <img class="logo-c" src="assets/logo-tecnifem.png" alt="" loading="lazy">
@@ -318,12 +372,7 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
   </div>
 </div></section>
 
-<section class="gris" hidden><div class="wrap">
-  <div class="cab aparece"><div><span class="ojo">Así de simple</span><h2>Cómo <em>trabajamos</em></h2></div><p>Todo se coordina por WhatsApp o por teléfono.</p></div>
-  <ol class="pasos aparece" id="p-pasos"><li><h3>Nos escribes o llamas</h3><p>Cuéntanos qué pasa y, si puedes, manda una foto.</p></li><li><h3>Coordinamos la visita</h3><p>Revisamos tu caso y vamos a tu domicilio.</p></li><li><h3>Lo dejamos funcionando</h3><p>Hacemos el trabajo y te explicamos qué se hizo.</p></li></ol>
-</div></section>
-
-<section id="videos" class="videos-s"><div class="wrap">
+<section id="videos" class="videos-s" data-tab="videos"><div class="wrap">
   <div class="cab aparece"><div><span class="ojo">Videos</span><h2 id="v-titulo">Míranos <em>trabajar</em></h2></div><p id="v-bajada">Videos de nuestros trabajos y consejos en Instagram y TikTok.</p></div>
   <div class="videos" id="v-lista"></div>
   <div class="siguenos">
@@ -332,50 +381,10 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
   </div>
 </div></section>
 
-<section id="trabajos" hidden><div class="wrap">
+<section id="trabajos" data-tab="galeria" hidden><div class="wrap">
   <div class="cab aparece"><div><span class="ojo">Galería</span><h2 id="g-titulo">Nuestros <em>trabajos</em></h2></div><p id="g-bajada"></p></div>
   <div class="trabajos" id="g-fotos"></div>
 </div></section>
-
-<section class="gris"><div class="wrap">
-  <div class="cab aparece"><div><span class="ojo">Opiniones</span><h2>Lo que dicen <em>sus clientes</em></h2></div><p>Opiniones publicadas en la ficha de Google del negocio.</p></div>
-  <div class="resenas aparece" id="r-lista"><div class="nota-g"><b class="r-nota">5,0</b><span class="est">★★★★★</span><span><span class="r-cant">20</span> opiniones en Google</span></div></div>
-</div></section>
-
-<section id="preguntas"><div class="wrap preguntas">
-  <div class="lado aparece">
-    <span class="ojo">Preguntas frecuentes</span>
-    <h2>Antes de <em>llamar</em></h2>
-    <p>Si tu duda no está aquí, escríbenos y te respondemos.</p>
-    <a class="btn btn-wa" href="https://wa.me/56945213431?text=Hola%2C%20tengo%20una%20consulta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Preguntar por WhatsApp</a>
-  </div>
-  <div class="aparece" id="f-preguntas"><details open><summary>¿Cómo pido una visita?</summary><p>Por WhatsApp al +56 9 4521 3431. Cuéntanos el problema y, si puedes, envía una foto.</p></details></div>
-</div></section>
-
-<section id="contacto" class="gris"><div class="wrap contacto">
-  <div class="aparece">
-    <span class="ojo">Contacto</span>
-    <h2>Hablemos <em>hoy</em></h2>
-    <div class="datos">
-      <div class="dato"><svg aria-hidden="true"><use href="#tel"/></svg><div><b><a href="tel:+56945213431">+56 9 4521 3431</a></b><span>WhatsApp y llamadas</span></div></div>
-      <div class="dato"><svg aria-hidden="true"><use href="#reloj"/></svg><div><b id="c-hor1">Lunes, 10:00 a 23:00</b><span id="c-hor2">Martes a viernes, 10:00 a 22:00 · Sábado, 10:00 a 12:00</span></div></div>
-      <div class="dato"><svg aria-hidden="true"><use href="#pin"/></svg><div><b>Atención a domicilio</b><span id="c-zona">Talca</span></div></div>
-    </div>
-    <iframe class="mapa" title="Mapa de la zona de atención de Tecnifem" loading="lazy" src="https://www.google.com/maps?q=Talca%2C%20Chile&z=12&output=embed"></iframe>
-  </div>
-  <form id="fCot" class="aparece" novalidate>
-    <h3>Pide tu visita</h3>
-    <label>Tu nombre<input id="cNombre" autocomplete="name"></label>
-    <label>¿Qué necesitas?
-      <select id="cServ"><option value="">— Elige uno —</option><option>Fugas y reparaciones</option><option>Calefont y gas</option><option>Redes de agua</option><option>Accesibilidad</option><option>Repuestos</option><option>Otro trabajo</option></select></label>
-    <label>Comuna o dirección<input id="cDir" placeholder="Ej: Talca, sector oriente"></label>
-    <label>Cuéntanos más (opcional)<textarea id="cMsg"></textarea></label>
-    <p class="aviso" id="cAviso" role="status"></p>
-    <button class="btn btn-wa" type="submit"><svg aria-hidden="true"><use href="#wa"/></svg>Enviar por WhatsApp</button>
-    <small>Se abre WhatsApp con el mensaje listo. Esta página no guarda tus datos.</small>
-  </form>
-</div></section>
-
 </main>
 
 <footer><div class="wrap">
@@ -434,20 +443,26 @@ footer small{grid-column:1/-1;border-top:1px solid var(--linea);padding-top:16px
   var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("visto");io.unobserve(x.target)}})},{threshold:.12}):null;
   document.querySelectorAll(".aparece").forEach(function(el){io?io.observe(el):el.classList.add("visto")});
   var y=document.getElementById("y");if(y)y.textContent=new Date().getFullYear();
+  // Pestañas: #tienda, #galeria, #videos y #nosotras muestran su propia vista; lo demás es la página de inicio
+  var VISTAS={tienda:1,galeria:1,videos:1,nosotras:1};
+  function ruta(){var h=(location.hash||"").slice(1),v=VISTAS[h]?h:"inicio";document.body.dataset.vista=v;
+    document.querySelectorAll(".menu a").forEach(function(a){a.classList.toggle("on",a.dataset.v===v&&(v!=="inicio"||a.getAttribute("href")==="#inicio"))});
+    if(v!=="inicio"){window.scrollTo(0,0);setTimeout(function(){window.scrollTo(0,0)},0)}else if(h&&h!=="inicio"){var el=document.getElementById(h);if(el)setTimeout(function(){el.scrollIntoView()},30)}else{window.scrollTo(0,0)}}
+  window.addEventListener("hashchange",ruta);ruta();
   // Buscador de la barra: busca en la tienda (si está activa) y lleva hasta los resultados
   var bq=document.getElementById("buscador"),q=document.getElementById("q");
   if(bq&&q){bq.addEventListener("submit",function(ev){ev.preventDefault();
     var t=document.getElementById("tienda"),tb=document.getElementById("t-buscar");
-    if(t&&!t.hidden&&tb){tb.value=q.value;tb.dispatchEvent(new Event("input",{bubbles:true}));t.scrollIntoView({behavior:"smooth"})}
-    else{var s=document.getElementById("servicios");if(s)s.scrollIntoView({behavior:"smooth"})}})}
+    if(t&&!t.hidden&&tb){location.hash="#tienda";tb.value=q.value;tb.dispatchEvent(new Event("input",{bubbles:true}))}
+    else{location.hash="#servicios"}})}
   window.addEventListener("load",function(){setTimeout(function(){
     var pt=document.getElementById("promo-tienda"),ti=document.getElementById("tienda");
-    if(pt&&ti&&ti.hidden){pt.href="#servicios";pt.querySelector("b").textContent="Todos nuestros servicios";pt.querySelector("span").textContent="Ver servicios →"}},2500)});
+    if(pt&&ti&&ti.hidden){pt.href="#servicios";pt.style.display="none"}},2500)});
 })();
 </script>
 <script>window.ASISTENTE = {"negocio": "Tecnifem", "persona": "Tecnifem", "wa": "56945213431", "boton": "¿Qué problema tienes?", "saludo": "Hola, soy el asistente de Tecnifem, mujeres que resuelven. ¿Qué necesitas?", "cuando": [{"t": "Hoy mismo", "m": "Lo necesito hoy."}, {"t": "Mañana", "m": "Lo necesito mañana."}, {"t": "Esta semana", "m": "Lo necesito esta semana."}, {"t": "Solo quiero cotizar", "m": "Por ahora solo quiero cotizar."}], "servicios": [{"n": "Fugas y reparaciones", "info": "Fugas, llaves, sifones, estanques de WC, destapes e instalación de artefactos sanitarios.", "opts": [], "kw": "gasfiter|arregl|repar|fuga|llave|sifon|wc|estanque|destap"}, {"n": "Calefont y gas", "info": "Reparación y mantención de calefont, redes de gas, medición de presión y planos de gas.", "opts": [], "kw": "calefon|agua caliente|termo|piloto|gas"}, {"n": "Redes de agua", "info": "Instalación y modificación de redes de agua en PPR, cobre y PVC.", "opts": [], "kw": "red|cañer|caner|ppr|cobre|pvc|soldadura"}, {"n": "Accesibilidad", "info": "Adecuaciones de baños y barras de seguridad para personas con movilidad reducida o discapacidad sensorial.", "opts": [], "kw": "barra|movilidad|discapacidad|adulto mayor|accesib"}, {"n": "Repuestos", "info": "Tenemos tienda de repuestos en la página y te asesoramos para elegir el correcto.", "opts": [], "kw": "repuesto|producto|comprar|tienda|venden"}], "faq": [{"pri": true, "kw": "precio|valor|cuanto|costo|cobra|sale|presupuesto|cotiz", "r": "El valor depende del trabajo. Cuéntame qué pasa y te dejo el mensaje listo para pedir el presupuesto."}, {"kw": "donde|direccion|ubicacion|comuna|zona|sector|llegan|van a", "r": "Atendemos en Talca y alrededores. Escríbenos con tu comuna y te confirmamos."}, {"kw": "horario|hora|abren|atienden|sabado|domingo|noche|urgencia|emergencia|24", "r": "Atendemos los lunes de 10:00 a 23:00, de martes a viernes de 10:00 a 22:00 y los sábados de 10:00 a 12:00."}, {"kw": "pago|transferencia|efectivo|tarjeta|boleta|factura", "r": "La forma de pago se coordina directamente por WhatsApp."}, {"kw": "mujer|mujeres|chica|señora|femenin", "r": "Sí, Tecnifem es un equipo de mujeres gasfíter: mujeres que resuelven."}, {"kw": "garantia|seguro|confianza|quien|experiencia", "r": "Tecnifem tiene 5,0 en Google con 20 opiniones. Sus clientes destacan la rapidez, el buen trato y el profesionalismo."}]};</script>
 <script src="asistente.js" defer></script>
-<script src="contenido.js?v=6" defer></script>
+<script src="contenido.js?v=7" defer></script>
 <!-- contador de visitas -->
 <script>(function(){try{var L=localStorage,S=sessionStorage;if(location.search.indexOf('yo=1')>-1)L.setItem('soy-de-la-casa','1');
 if(L.getItem('soy-de-la-casa')||S.getItem('visita-contada'))return;S.setItem('visita-contada','1');
