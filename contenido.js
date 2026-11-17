@@ -97,6 +97,34 @@
   }
 
   /* ---------- servicios ---------- */
+  function iconoCategoria(cat) {
+    var t = String(cat || "").toLowerCase();
+    if (/calefon|gas/.test(t)) return "fuego";
+    if (/red|agua|ca[ñn]er/.test(t)) return "tubo";
+    if (/accesib|movilidad|discapac/.test(t)) return "acceso";
+    if (/asesor|proyect|plano|mercado/.test(t)) return "plano";
+    if (/hogar|otro/.test(t)) return "casa";
+    return "llave";
+  }
+  function embedInstagram(url) {
+    var m = String(url || "").match(/instagram\.com\/(?:[^\/]+\/)?(reel|p)\/([A-Za-z0-9_-]+)/);
+    return m ? "https://www.instagram.com/" + m[1] + "/" + m[2] + "/embed" : "";
+  }
+  // Visor de video (ventana encima de la página)
+  function abrirVisor(src) {
+    var v = $("visor"); if (!v) return;
+    $("visor-marco").innerHTML = '<iframe src="' + esc(src) + '" title="Video de Tecnifem" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    v.hidden = false; document.body.style.overflow = "hidden"; $("visor-x").focus();
+  }
+  function cerrarVisor() { var v = $("visor"); if (!v || v.hidden) return; v.hidden = true; $("visor-marco").innerHTML = ""; document.body.style.overflow = ""; }
+  document.addEventListener("click", function (ev) {
+    if (!ev.target.closest) return;
+    var b = ev.target.closest("[data-video]");
+    if (b) { ev.preventDefault(); if (b.getAttribute("data-ext")) window.open(b.getAttribute("data-video"), "_blank", "noopener"); else abrirVisor(b.getAttribute("data-video")); return; }
+    if (ev.target.id === "visor" || ev.target.closest("#visor-x")) cerrarVisor();
+  });
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") cerrarVisor(); });
+
   var servicios = [], filtroS = "Principales";
   function pintarServicios(sv) {
     if (!sv) return;
@@ -116,7 +144,13 @@
     var vis = servicios.filter(function (x) { return filtroS === "Todos" || (filtroS === "Principales" ? x.destacado : (x.categoria || "Otros") === filtroS); });
     $("s-lista").className = "s-grilla";
     $("s-lista").innerHTML = vis.map(function (x) {
-      return '<article class="s-item"><span class="t-cat">' + esc(x.categoria || "") + "</span><h3>" + esc(x.nombre) + "</h3>" + (x.descripcion ? "<p>" + esc(x.descripcion) + "</p>" : "") + '<a class="s-cot" data-s="' + esc(x.nombre) + '" href="#">Cotizar por WhatsApp →</a></article>';
+      var ic = iconoCategoria(x.categoria);
+      var media = x.foto
+        ? '<img src="' + esc(x.foto) + '" alt="' + esc(x.nombre) + '" loading="lazy">'
+        : '<div class="s-ilus s-ilus-' + ic + '"><svg aria-hidden="true"><use href="#i-' + ic + '"/></svg><span>' + esc(x.categoria || "") + "</span></div>";
+      var emb = embedInstagram(x.video);
+      var vbtn = x.video ? '<button type="button" class="s-video" data-video="' + esc(emb || x.video) + '" data-ext="' + (emb ? "" : "1") + '" aria-label="Ver video: ' + esc(x.nombre) + '"><svg aria-hidden="true"><use href="#play"/></svg>Ver video</button>' : "";
+      return '<article class="s-item"><div class="s-media">' + media + vbtn + '</div><div class="s-cuerpo"><span class="t-cat">' + esc(x.categoria || "") + "</span><h3>" + esc(x.nombre) + "</h3>" + (x.descripcion ? "<p>" + esc(x.descripcion) + "</p>" : "") + '<a class="s-cot" data-s="' + esc(x.nombre) + '" href="#">Cotizar por WhatsApp →</a></div></article>';
     }).join("");
   }
 

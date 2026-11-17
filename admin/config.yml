@@ -87,6 +87,8 @@ collections:
               - { label: Nombre, name: nombre, widget: string }
               - { label: Categoría, name: categoria, widget: string, hint: "Escríbala igual en los servicios de la misma categoría. Ej: Gasfitería, Calefont y gas, Redes de agua, Accesibilidad." }
               - { label: Descripción corta, name: descripcion, widget: text, required: false }
+              - { label: "Foto del servicio (opcional)", name: foto, widget: image, choose_url: false, required: false, hint: "Una foto de un trabajo de este tipo. Si no sube una, se muestra un dibujo de la categoría." }
+              - { label: "Video de Instagram (opcional)", name: video, widget: string, required: false, hint: "Pegue el enlace del reel (en Instagram: ⋯ → Copiar enlace). Aparece un botón «Ver video» en la tarjeta." }
               - { label: "Principal (aparece primero)", name: destacado, widget: boolean, default: false, required: false }
               - { label: "Visible en la página", name: visible, widget: boolean, default: true, required: false, hint: "Desmárquelo para ocultar un servicio sin borrarlo." }
 

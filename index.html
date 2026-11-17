@@ -16,7 +16,7 @@
 <link rel="icon" href="assets/icono-tecnifem.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tienda.css">
+<link rel="stylesheet" href="tienda.css?v=3">
 <link rel="stylesheet" href="asistente.css">
 <style>
 :root{
@@ -183,6 +183,12 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 <symbol id="ig" viewBox="0 0 24 24"><rect x="3.500" y="3.500" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.200" cy="6.800" r=".600"/></symbol>
 <symbol id="tk" viewBox="0 0 24 24"><path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500M14 3c.5 2.800 2.300 4.500 5 4.700"/></symbol>
 <symbol id="play" viewBox="0 0 24 24"><path d="M7 4.500v15l12-7.500z"/></symbol>
+<symbol id="i-llave" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L3.5 17.5v3h3l5.7-5.7a4 4 0 0 0 5.3-5.3l-2.5 2.5-2-2 2.5-2.5Z"/></symbol>
+<symbol id="i-fuego" viewBox="0 0 24 24"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5Z"/></symbol>
+<symbol id="i-tubo" viewBox="0 0 24 24"><path d="M3 8h8a3 3 0 0 1 3 3v10M3 12h6a1 1 0 0 1 1 1v8M3 6v8M12 21h4"/></symbol>
+<symbol id="i-casa" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6h-6v6H4v-9Z"/></symbol>
+<symbol id="i-acceso" viewBox="0 0 24 24"><circle cx="11" cy="4.5" r="1.8"/><path d="M11 7v6h5l2.5 5M11 10h4M8.5 11.5a5 5 0 1 0 6.5 7"/></symbol>
+<symbol id="i-plano" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 13.5h7M8.5 17h4"/></symbol>
 <symbol id="i-caja" viewBox="0 0 24 24"><path d="M3.500 8 12 4l8.500 4v8.500L12 20.500l-8.500-4V8Z"/><path d="M3.500 8 12 12l8.500-4M12 12v8.500"/></symbol>
 </svg>
 
@@ -362,6 +368,9 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 <a class="wa-flot" href="https://wa.me/56945213431?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20necesito%20un%20gasf%C3%ADter" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
 <a class="fab" href="https://wa.me/56945213431?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20necesito%20un%20gasf%C3%ADter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/></svg><span class="fab-txt">¿Qué problema tienes?</span></a>
 
+<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Video">
+  <div class="visor-caja"><button type="button" class="visor-x" id="visor-x" aria-label="Cerrar video">&times;</button><div class="visor-marco" id="visor-marco"></div></div>
+</div>
 <div class="carro" id="carro" aria-hidden="true">
   <div class="carro-caja" role="dialog" aria-modal="true" aria-labelledby="carro-t">
     <div class="carro-cab"><h3 id="carro-t">Su carro</h3><button type="button" id="carro-cerrar" aria-label="Cerrar carro">&times;</button></div>
@@ -396,7 +405,7 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 </script>
 <script>window.ASISTENTE = {"negocio": "Tecnifem", "persona": "Tecnifem", "wa": "56945213431", "boton": "¿Qué problema tienes?", "saludo": "Hola, soy el asistente de Tecnifem, mujeres que resuelven. ¿Qué necesitas?", "cuando": [{"t": "Hoy mismo", "m": "Lo necesito hoy."}, {"t": "Mañana", "m": "Lo necesito mañana."}, {"t": "Esta semana", "m": "Lo necesito esta semana."}, {"t": "Solo quiero cotizar", "m": "Por ahora solo quiero cotizar."}], "servicios": [{"n": "Gasfitería", "info": "Fugas, llaves, sifones, estanques de WC, destapes e instalación de artefactos sanitarios.", "opts": [], "kw": "gasfiter|arregl|repar|fuga|llave|sifon|wc|estanque|destap"}, {"n": "Calefont y gas", "info": "Reparación y mantención de calefont, redes de gas, medición de presión y planos de gas.", "opts": [], "kw": "calefon|agua caliente|termo|piloto|gas"}, {"n": "Redes de agua", "info": "Instalación y modificación de redes de agua en PPR, cobre y PVC.", "opts": [], "kw": "red|cañer|caner|ppr|cobre|pvc|soldadura"}, {"n": "Accesibilidad", "info": "Adecuaciones de baños y barras de seguridad para personas con movilidad reducida o discapacidad sensorial.", "opts": [], "kw": "barra|movilidad|discapacidad|adulto mayor|accesib"}, {"n": "Repuestos", "info": "Tenemos tienda de repuestos en la página y te asesoramos para elegir el correcto.", "opts": [], "kw": "repuesto|producto|comprar|tienda|venden"}], "faq": [{"pri": true, "kw": "precio|valor|cuanto|costo|cobra|sale|presupuesto|cotiz", "r": "El valor depende del trabajo. Cuéntame qué pasa y te dejo el mensaje listo para pedir el presupuesto."}, {"kw": "donde|direccion|ubicacion|comuna|zona|sector|llegan|van a", "r": "Atendemos en Talca y alrededores. Escríbenos con tu comuna y te confirmamos."}, {"kw": "horario|hora|abren|atienden|sabado|domingo|noche|urgencia|emergencia|24", "r": "Atendemos los lunes de 10:00 a 23:00, de martes a viernes de 10:00 a 22:00 y los sábados de 10:00 a 12:00."}, {"kw": "pago|transferencia|efectivo|tarjeta|boleta|factura", "r": "La forma de pago se coordina directamente por WhatsApp."}, {"kw": "mujer|mujeres|chica|señora|femenin", "r": "Sí, Tecnifem es un equipo de mujeres gasfíter: mujeres que resuelven."}, {"kw": "garantia|seguro|confianza|quien|experiencia", "r": "Tecnifem tiene 5,0 en Google con 20 opiniones. Sus clientes destacan la rapidez, el buen trato y el profesionalismo."}]};</script>
 <script src="asistente.js" defer></script>
-<script src="contenido.js" defer></script>
+<script src="contenido.js?v=3" defer></script>
 <!-- contador de visitas -->
 <script>(function(){try{var L=localStorage,S=sessionStorage;if(location.search.indexOf('yo=1')>-1)L.setItem('soy-de-la-casa','1');
 if(L.getItem('soy-de-la-casa')||S.getItem('visita-contada'))return;S.setItem('visita-contada','1');

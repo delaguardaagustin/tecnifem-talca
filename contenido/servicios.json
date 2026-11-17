@@ -7,6 +7,8 @@
       "nombre": "Gasfitería general",
       "categoria": "Gasfitería",
       "descripcion": "Reparaciones e instalaciones de agua en casas, departamentos y locales.",
+      "foto": "assets/fotos/trabajo-demolicion.jpg",
+      "video": "",
       "destacado": true,
       "visible": true
     },
@@ -14,6 +16,8 @@
       "nombre": "Reparación y mantención de calefont",
       "categoria": "Calefont y gas",
       "descripcion": "Revisión, mantención y reparación de calefont para que vuelva a funcionar seguro.",
+      "foto": "assets/fotos/calefont-revision.jpg",
+      "video": "https://www.instagram.com/reel/DbYllBgxtsR/",
       "destacado": true,
       "visible": true
     },
@@ -21,6 +25,8 @@
       "nombre": "Reparación de fugas visibles",
       "categoria": "Gasfitería",
       "descripcion": "Reparamos filtraciones a la vista en llaves, cañerías y artefactos.",
+      "foto": "assets/fotos/trabajo-desague.jpg",
+      "video": "",
       "destacado": true,
       "visible": true
     },
@@ -28,6 +34,8 @@
       "nombre": "Instalación de redes de gas",
       "categoria": "Calefont y gas",
       "descripcion": "Instalación de redes de gas para artefactos del hogar o del local.",
+      "foto": "assets/fotos/trabajo-calefont-gas.jpg",
+      "video": "https://www.instagram.com/reel/DZ_D29Xxso9/",
       "destacado": true,
       "visible": true
     },
@@ -35,6 +43,8 @@
       "nombre": "Instalación de redes de agua",
       "categoria": "Redes de agua",
       "descripcion": "Instalación de redes de agua fría y caliente.",
+      "foto": "assets/fotos/canerias-calefont.jpg",
+      "video": "",
       "destacado": true,
       "visible": true
     },
@@ -42,6 +52,8 @@
       "nombre": "Adecuaciones para personas con movilidad reducida",
       "categoria": "Accesibilidad",
       "descripcion": "Adaptamos baños y artefactos sanitarios para personas con movilidad reducida.",
+      "foto": "",
+      "video": "",
       "destacado": true,
       "visible": true
     },
@@ -49,6 +61,8 @@
       "nombre": "Instalación de artefactos sanitarios",
       "categoria": "Gasfitería",
       "descripcion": "Instalación de WC, lavamanos, lavaplatos, duchas y tinas.",
+      "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -56,6 +70,8 @@
       "nombre": "Cambio de sifón",
       "categoria": "Gasfitería",
       "descripcion": "Cambio de sifones de lavamanos y lavaplatos.",
+      "foto": "assets/fotos/trabajo-canerias.jpg",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -63,6 +79,8 @@
       "nombre": "Cambio de llaves",
       "categoria": "Gasfitería",
       "descripcion": "Cambio de llaves de paso, monomandos y griferías.",
+      "foto": "assets/fotos/lavamanos-instalado.jpg",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -70,6 +88,8 @@
       "nombre": "Cambio de kit interno de estanque WC",
       "categoria": "Gasfitería",
       "descripcion": "Cambio del mecanismo interno del estanque cuando el WC pierde agua o no carga.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -77,6 +97,8 @@
       "nombre": "Destapes locales",
       "categoria": "Gasfitería",
       "descripcion": "Destape de lavamanos, lavaplatos, duchas y desagües cercanos.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -84,6 +106,8 @@
       "nombre": "Restauración de artefactos",
       "categoria": "Gasfitería",
       "descripcion": "Restauración de artefactos sanitarios para volver a usarlos.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -91,6 +115,8 @@
       "nombre": "Reacondicionamiento de artefactos de agua y gas",
       "categoria": "Calefont y gas",
       "descripcion": "Reacondicionamiento de artefactos de agua y gas para darles más vida útil.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -98,6 +124,8 @@
       "nombre": "Medición de pérdida de presión de gas con manómetro digital",
       "categoria": "Calefont y gas",
       "descripcion": "Revisión de la red de gas para detectar pérdidas de presión, con manómetro digital.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -105,6 +133,8 @@
       "nombre": "Medición de pérdida de presión de gas con manómetro manual",
       "categoria": "Calefont y gas",
       "descripcion": "Revisión de la red de gas para detectar pérdidas de presión, con manómetro manual.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -112,6 +142,8 @@
       "nombre": "Cálculo de potencia de gas",
       "categoria": "Calefont y gas",
       "descripcion": "Cálculo de la potencia de gas que necesitan sus artefactos.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -119,6 +151,8 @@
       "nombre": "Dibujo isométrico de planos de gas (Decreto 66 de la SEC)",
       "categoria": "Calefont y gas",
       "descripcion": "Dibujo isométrico de planos de gas según el Decreto 66 de la SEC.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -126,6 +160,8 @@
       "nombre": "Modificación de redes de agua en PPR",
       "categoria": "Redes de agua",
       "descripcion": "Modificaciones y extensiones de redes de agua en PPR.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -133,6 +169,8 @@
       "nombre": "Modificación de redes de agua en cobre",
       "categoria": "Redes de agua",
       "descripcion": "Modificaciones y extensiones de redes de agua en cobre.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -140,6 +178,8 @@
       "nombre": "Modificación de redes de agua en PVC",
       "categoria": "Redes de agua",
       "descripcion": "Modificaciones y extensiones de redes de agua en PVC.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -147,6 +187,8 @@
       "nombre": "Termofusión en PPR",
       "categoria": "Redes de agua",
       "descripcion": "Uniones de cañerías de PPR por termofusión.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -154,6 +196,8 @@
       "nombre": "Soldadura fuerte a la plata",
       "categoria": "Redes de agua",
       "descripcion": "Soldadura fuerte con aleación de plata en cañerías de cobre.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -161,6 +205,8 @@
       "nombre": "Soldadura en agua",
       "categoria": "Redes de agua",
       "descripcion": "Soldadura de cañerías en redes de agua.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -168,6 +214,8 @@
       "nombre": "Soldadura química con adhesivos",
       "categoria": "Redes de agua",
       "descripcion": "Uniones con adhesivos para cañerías de PVC.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -175,6 +223,8 @@
       "nombre": "Trabajos en PVC",
       "categoria": "Redes de agua",
       "descripcion": "Instalaciones y reparaciones en cañerías de PVC.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -182,6 +232,8 @@
       "nombre": "Adecuaciones para personas con discapacidad sensorial",
       "categoria": "Accesibilidad",
       "descripcion": "Adaptamos artefactos sanitarios para personas con discapacidad sensorial.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -189,6 +241,8 @@
       "nombre": "Instalación de barras de seguridad",
       "categoria": "Accesibilidad",
       "descripcion": "Barras de seguridad en duchas, baños y otros espacios de la casa.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -196,6 +250,8 @@
       "nombre": "Cambio de enchufes",
       "categoria": "Otros trabajos del hogar",
       "descripcion": "Cambio de enchufes en la casa.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -203,6 +259,8 @@
       "nombre": "Instalación de chapas",
       "categoria": "Otros trabajos del hogar",
       "descripcion": "Instalación y cambio de chapas de puertas.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -210,6 +268,8 @@
       "nombre": "Tabiquería falsa",
       "categoria": "Otros trabajos del hogar",
       "descripcion": "Construcción de tabiquería falsa.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -217,6 +277,8 @@
       "nombre": "Reciclaje",
       "categoria": "Otros trabajos del hogar",
       "descripcion": "Reciclaje de artefactos y materiales.",
+      "foto": "assets/fotos/video-pilas.jpg",
+      "video": "https://www.instagram.com/reel/DbM8n93OzDE/",
       "destacado": false,
       "visible": true
     },
@@ -224,6 +286,8 @@
       "nombre": "Asesoría en repuestos",
       "categoria": "Asesorías y proyectos",
       "descripcion": "Te ayudamos a elegir el repuesto correcto para tu artefacto.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -231,6 +295,8 @@
       "nombre": "Asesoría en mantenimiento básico de gasfitería para el hogar",
       "categoria": "Asesorías y proyectos",
       "descripcion": "Te enseñamos el mantenimiento básico para evitar problemas en casa.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -238,6 +304,8 @@
       "nombre": "Cálculo de materiales",
       "categoria": "Asesorías y proyectos",
       "descripcion": "Cálculo de los materiales que necesita tu obra o arreglo.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     },
@@ -245,6 +313,8 @@
       "nombre": "Trabajos para Mercado Público",
       "categoria": "Asesorías y proyectos",
       "descripcion": "Trabajos de gasfitería para instituciones que compran por Mercado Público.",
+      "foto": "",
+      "video": "",
       "destacado": false,
       "visible": true
     }
