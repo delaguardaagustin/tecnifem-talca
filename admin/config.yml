@@ -62,6 +62,11 @@ collections:
           - { label: "Título (lo que va entre *asteriscos* sale destacado)", name: titulo, widget: string }
           - { label: Texto bajo el título, name: bajada, widget: text }
           - { label: Retiro y despacho, name: entrega, widget: text }
+          - { label: "Valor del despacho en Talca (en pesos, sin puntos)", name: despacho_valor, widget: number, value_type: int, min: 0, required: false, hint: "Se suma al total cuando el cliente elige despacho. Si deja 0, el despacho se coordina por WhatsApp y no se cobra en línea." }
+          - { label: "Razón social (la ley pide mostrarla en la tienda)", name: razon_social, widget: string, required: false, hint: "Ej: TF Soluciones SpA. Sale en el carro y en los términos de venta." }
+          - { label: "RUT de la empresa", name: rut, widget: string, required: false }
+          - { label: "Domicilio comercial", name: domicilio, widget: string, required: false }
+          - { label: "Correo de contacto", name: correo, widget: string, required: false }
           - { label: "Aviso (déjelo vacío para no mostrarlo)", name: aviso_ejemplo, widget: string, required: false }
 
   # ---------------- SERVICIOS ----------------
@@ -109,6 +114,15 @@ collections:
             collapsed: true
             fields:
               - { label: "Texto (déjelo vacío para ocultar la franja)", name: texto, widget: string, required: false }
+          - label: "Confianza (solo se muestra lo que llene)"
+            name: confianza
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Garantía", name: garantia, widget: string, required: false, hint: "Ej: 3 meses de garantía en cada trabajo. Solo si de verdad la dan." }
+              - { label: "Certificación SEC", name: sec, widget: string, required: false, hint: "Ej: Instaladora de gas autorizada SEC, clase 3. Solo si la licencia está vigente." }
+              - { label: "Enlace para verificar la SEC (opcional)", name: sec_enlace, widget: string, required: false, hint: "Buscador oficial de instaladores de la SEC." }
+              - { label: "Valor de la visita", name: visita, widget: string, required: false, hint: "Ej: Visita $15.000, se descuenta si acepta el presupuesto." }
           - label: Portada
             name: portada
             widget: object

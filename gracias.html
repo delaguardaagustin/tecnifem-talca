@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Estado de su compra · Tecnifem</title>
+<link rel="icon" href="assets/icono-tecnifem.png">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,800..900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002050;--azul:#0070c0;--rayo:#ffc83d;--wa:#1f9d57;--suave:#4d5b70;--linea:#dde5ef}
+*{box-sizing:border-box}body{margin:0;font:400 16px/1.6 "Inter",system-ui,sans-serif;color:#0b1424;background:#f4f7fb;min-height:100dvh;display:flex;flex-direction:column}
+header{background:var(--navy);padding:14px max(16px,env(safe-area-inset-left))}header a{display:inline-block;background:#fff;border-radius:10px;padding:4px 8px}header img{height:42px}
+main{flex:1;display:grid;place-items:center;padding:30px 16px}
+.caja{background:#fff;border:1px solid var(--linea);border-radius:22px;padding:30px 26px;max-width:520px;width:100%;text-align:center;box-shadow:0 30px 60px -40px rgba(0,0,0,.5)}
+.ico{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;font-size:2.2rem}
+.pagado .ico{background:#e6f6ec}.rechazado .ico,.error .ico{background:#fdecea}.pendiente .ico{background:#fff6dc}
+h1{font:900 clamp(1.7rem,6vw,2.2rem)/1.05 "Archivo",sans-serif;font-stretch:88%;text-transform:uppercase;color:var(--navy);margin:0 0 10px}
+p{color:var(--suave);margin:0 0 14px}
+.orden{display:inline-block;background:#f4f7fb;border:1px dashed #b8c6d8;border-radius:10px;padding:8px 14px;font-weight:700;color:var(--navy);margin:4px 0 18px}
+.botones{display:grid;gap:10px}
+.b{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;font-weight:700;text-decoration:none}
+.b-wa{background:var(--wa);color:#fff}.b-osc{background:var(--navy);color:#fff}.b-borde{border:2px solid var(--navy);color:var(--navy)}
+</style>
+</head>
+<body>
+<header><a href="./"><img src="assets/logo-tecnifem.png" alt="Tecnifem"></a></header>
+<main>
+  <div class="caja pendiente" id="caja">
+    <div class="ico" id="ico" aria-hidden="true">⏳</div>
+    <h1 id="titulo">Revisando su pago…</h1>
+    <p id="texto">Estamos confirmando el resultado con Webpay.</p>
+    <div class="orden" id="orden" hidden></div>
+    <div class="botones">
+      <a class="b b-wa" id="wa" href="https://wa.me/56945213431" target="_blank" rel="noopener">Consultar mi pedido por WhatsApp</a>
+      <a class="b b-borde" id="volver" href="./#tienda">Volver a la tienda</a>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search), estado = q.get("estado") || "pendiente", orden = (q.get("orden") || "").replace(/[^A-Za-z0-9-]/g, "");
+  var T = {
+    pagado: ["✅", "¡Pago recibido!", "Gracias por su compra. Le enviamos el comprobante a su correo y le escribiremos para coordinar el retiro o el despacho.", "pagado"],
+    rechazado: ["✖️", "El pago no se realizó", "Webpay rechazó o se canceló el pago. No se hizo ningún cargo. Puede intentarlo de nuevo o escribirnos por WhatsApp.", "rechazado"],
+    anulado: ["✖️", "El pago fue anulado", "No se hizo ningún cargo. Puede intentarlo de nuevo o escribirnos por WhatsApp.", "rechazado"],
+    pendiente: ["⏳", "Pago pendiente", "Su pago aún no se confirma. Si ya pagó, le llegará el comprobante por correo en unos minutos. Ante cualquier duda, escríbanos.", "pendiente"],
+    error: ["⚠️", "No pudimos confirmar el pago", "Escríbanos por WhatsApp con su número de orden y lo revisamos de inmediato.", "error"]
+  };
+  var t = T[estado] || T.pendiente;
+  document.getElementById("ico").textContent = t[0];
+  document.getElementById("titulo").textContent = t[1];
+  document.getElementById("texto").textContent = t[2];
+  document.getElementById("caja").className = "caja " + t[3];
+  if (orden) { var o = document.getElementById("orden"); o.textContent = "Orden " + orden; o.hidden = false; }
+  document.getElementById("wa").href = "https://wa.me/56945213431?text=" + encodeURIComponent("Hola, hice una compra en su tienda" + (orden ? " (orden " + orden + ")" : "") + " y quiero consultar por mi pedido.");
+  if (estado === "pagado") { try { localStorage.removeItem("tecnifem-carro"); } catch (e) {} }
+  else { document.getElementById("volver").textContent = "Volver al carro"; }
+})();
+</script>
+</body>
+</html>

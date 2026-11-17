@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Términos de venta · Tecnifem</title>
+<link rel="icon" href="assets/icono-tecnifem.png">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,800..900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font:400 16px/1.65 "Inter",system-ui,sans-serif;color:#0b1424;background:#fff}
+header{background:#002050;padding:14px max(16px,env(safe-area-inset-left))}header a{display:inline-block;background:#fff;border-radius:10px;padding:4px 8px}header img{height:42px}
+main{width:min(780px,100% - 32px);margin:0 auto;padding:34px 0 50px}
+h1{font:900 clamp(1.8rem,6vw,2.4rem)/1.05 "Archivo",sans-serif;font-stretch:88%;text-transform:uppercase;color:#002050;margin:0 0 6px}
+h2{font:800 1.15rem/1.2 "Archivo",sans-serif;color:#002050;margin:28px 0 8px;text-transform:uppercase}
+p,li{color:#33425a}.nota{background:#f4f7fb;border-radius:12px;padding:12px 14px;font-size:.92rem}
+#vendedor:empty{display:none}
+</style>
+</head>
+<body>
+<header><a href="./"><img src="assets/logo-tecnifem.png" alt="Tecnifem"></a></header>
+<main>
+  <h1>Términos de venta</h1>
+  <p>Condiciones de compra en la tienda en línea de Tecnifem, según la Ley 19.496 de protección de los derechos de los consumidores y el Reglamento de Comercio Electrónico.</p>
+  <p class="nota" id="vendedor"></p>
+
+  <h2>1. Precios y pago</h2>
+  <p>Los precios están en pesos chilenos e incluyen los impuestos que correspondan. El valor del despacho, si lo hay, se muestra aparte en el carro antes de pagar. El pago en línea se hace en Webpay (Transbank) a través de Flow: esta página no ve ni guarda los datos de su tarjeta. Por cada compra se emite la boleta o factura correspondiente y se envía al correo indicado.</p>
+
+  <h2>2. Confirmación de la compra</h2>
+  <p>Cuando el pago se confirma, le enviamos un comprobante al correo que escribió en el carro con el detalle de los productos, el total y la forma de entrega.</p>
+
+  <h2>3. Retiro y despacho</h2>
+  <p>Puede retirar su compra en Talca o pedir despacho a domicilio. El plazo y la forma de entrega se coordinan por WhatsApp después de la compra. Si un producto pagado no tiene stock, le devolvemos el total pagado o le ofrecemos un reemplazo, a su elección.</p>
+
+  <h2>4. Derecho a retracto</h2>
+  <p>En compras a distancia usted puede retractarse dentro de los 10 días corridos siguientes a la recepción del producto, siempre que lo devuelva sin uso, con sus envases y accesorios. Le devolvemos lo pagado por el producto. Para usarlo, escríbanos por WhatsApp o correo con su número de orden.</p>
+
+  <h2>5. Garantía legal</h2>
+  <p>Si un producto nuevo presenta una falla, dentro de los 6 meses siguientes a su recepción usted puede elegir entre el cambio, la reparación gratuita o la devolución de lo pagado, según la ley. Esto no cubre daños por mala instalación o mal uso.</p>
+
+  <h2>6. Compatibilidad de repuestos</h2>
+  <p>Cada producto indica con qué equipos es compatible. Si no está seguro de que le sirve, envíenos una foto de su calefont o del repuesto por WhatsApp antes de comprar y le confirmamos.</p>
+
+  <h2>7. Contacto y reclamos</h2>
+  <p>WhatsApp y llamadas: +56 9 4521 3431. También puede presentar reclamos en el Servicio Nacional del Consumidor (sernac.cl).</p>
+</main>
+<script>
+fetch("contenido/tienda.json?v=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (t) {
+  var d = [t.razon_social, t.rut ? "RUT " + t.rut : "", t.domicilio, t.correo].filter(Boolean);
+  if (d.length) document.getElementById("vendedor").textContent = "Vendedor: " + d.join(" · ");
+}).catch(function () {});
+</script>
+</body>
+</html>

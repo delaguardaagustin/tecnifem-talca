@@ -16,7 +16,7 @@
 <link rel="icon" href="assets/icono-tecnifem.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tienda.css?v=3">
+<link rel="stylesheet" href="tienda.css?v=5">
 <link rel="stylesheet" href="asistente.css">
 <style>
 :root{
@@ -45,6 +45,11 @@ section{padding:84px 0}
 .btn-wa{background:var(--wa);border-color:var(--wa);color:#fff}
 .btn-pri{background:var(--azul);border-color:var(--azul);color:#fff}
 .btn-osc{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn-rayo{background:var(--rayo);border-color:var(--rayo)!important;color:var(--navy)}
+.btn-borde-b{background:transparent;border-color:#fff;color:#fff}
+.confianza{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.confianza li{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 12px;font-size:.86rem;font-weight:600;color:#fff}
+.confianza a{color:var(--rayo)}
 .muestra{background:#0c0f12;color:#e9edf1;font:500 .84rem/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;border-bottom:1px solid #d8ac54}
 .muestra div{width:min(1220px,100% - 28px);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 18px;padding:8px 0;text-align:center}
 .muestra b{color:#d8ac54}.muestra a{background:#d8ac54;color:#0c0f12;font-weight:700;text-decoration:none;border-radius:999px;padding:6px 14px;white-space:nowrap}
@@ -216,10 +221,11 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
       <span class="lema">⚡ <span id="c-eslogan">Gasfitería hecha por mujeres</span></span>
       <span class="ojo" id="c-ojo">Gasfitería y calefont · Talca</span>
       <h1 id="c-titulo">Mujeres que <em>resuelven</em></h1>
+      <ul class="confianza" id="c-confianza" hidden></ul>
       <p id="c-bajada">Somos Tecnifem: reparamos fugas, calefont y redes de agua y gas en Talca y alrededores. Escríbenos y coordinamos la visita.</p>
       <div class="botones">
-        <a class="btn btn-wa" href="https://wa.me/56945213431?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20necesito%20un%20gasf%C3%ADter" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Pedir visita por WhatsApp</a>
-        <a class="btn" href="#servicios">Ver servicios</a>
+        <a class="btn btn-rayo" href="https://wa.me/56945213431?text=Hola%2C%20tengo%20una%20urgencia%20de%20gasfiter%C3%ADa%20y%20necesito%20ayuda%20hoy" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Urgencia hoy</a>
+        <a class="btn btn-borde-b" href="https://wa.me/56945213431?text=Hola%2C%20quiero%20cotizar%20un%20trabajo.%20Les%20env%C3%ADo%20una%20foto%20del%20problema." target="_blank" rel="noopener">Cotizar con una foto</a>
       </div>
     </div>
     <div class="collage">
@@ -261,6 +267,7 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
         <div class="t-bloque"><h4>Marca</h4><select class="t-sel" id="t-marca" aria-label="Filtrar por marca"><option value="">Todas las marcas</option></select></div>
         <div class="t-bloque"><label class="t-switch"><input type="checkbox" id="t-disp"><span></span>Solo mostrar disponibles</label></div>
       </details>
+      <a class="t-foto" href="https://wa.me/56945213431?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20repuesto%20necesito.%20Les%20env%C3%ADo%20una%20foto%20de%20mi%20calefont%20o%20del%20repuesto." target="_blank" rel="noopener"><b>¿No sabes si te sirve?</b><span>Mándanos una foto de tu calefont o del repuesto y te decimos cuál es →</span></a>
       <a class="t-empresa" href="https://wa.me/56945213431?text=Hola%2C%20somos%20una%20empresa%20o%20instituci%C3%B3n%20y%20queremos%20cotizar" target="_blank" rel="noopener"><b>¿Empresa o institución?</b><span>Cotizamos por volumen y trabajos para Mercado Público →</span></a>
     </aside>
     <div class="t-main">
@@ -375,15 +382,24 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
   <div class="carro-caja" role="dialog" aria-modal="true" aria-labelledby="carro-t">
     <div class="carro-cab"><h3 id="carro-t">Su carro</h3><button type="button" id="carro-cerrar" aria-label="Cerrar carro">&times;</button></div>
     <div id="carro-lista" class="carro-lista"></div>
-    <div class="carro-total"><span>Total productos</span><b id="carro-total">$0</b></div>
+    <div class="carro-resumen">
+      <div><span>Productos</span><b id="carro-sub">$0</b></div>
+      <div><span>Despacho</span><b id="carro-desp">Gratis (retiro)</b></div>
+      <div class="carro-total"><span>Total</span><b id="carro-total">$0</b></div>
+    </div>
     <form id="carro-form" novalidate>
       <label>Su nombre<input id="pd-nombre" autocomplete="name"></label>
-      <label>Su correo (para el comprobante)<input id="pd-correo" type="email" autocomplete="email"></label>
+      <label>Su correo (ahí le llega el comprobante)<input id="pd-correo" type="email" autocomplete="email"></label>
       <label>Entrega<select id="pd-entrega"><option>Retiro en Talca</option><option>Despacho a domicilio</option></select></label>
       <label id="pd-dir-l" hidden>Dirección de despacho<input id="pd-dir" autocomplete="street-address"></label>
+      <label class="pd-acepto" id="pd-acepto-l" hidden><input type="checkbox" id="pd-acepto"> Acepto los <a href="terminos.html" target="_blank" rel="noopener">términos de venta, cambios y devoluciones</a></label>
       <p class="aviso" id="pd-aviso" role="status"></p>
       <button class="btn btn-pri" id="carro-pagar" type="submit" disabled>Enviar pedido por WhatsApp</button>
+      <button class="btn btn-wa pd-wa" id="pd-wa" type="button" hidden>Prefiero coordinar por WhatsApp</button>
+      <div class="pd-sellos" id="pd-sellos" hidden><span>🔒 Pago seguro</span><span>Webpay · Transbank</span><span>vía Flow</span></div>
       <small id="pd-nota">El pago en línea con Webpay se activa al conectar la cuenta de Flow de Tecnifem.</small>
+      <small class="pd-vendedor" id="pd-vendedor" hidden></small>
+      <small><a href="terminos.html" target="_blank" rel="noopener">Términos de venta, cambios y devoluciones</a></small>
     </form>
   </div>
 </div>
@@ -405,7 +421,7 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 </script>
 <script>window.ASISTENTE = {"negocio": "Tecnifem", "persona": "Tecnifem", "wa": "56945213431", "boton": "¿Qué problema tienes?", "saludo": "Hola, soy el asistente de Tecnifem, mujeres que resuelven. ¿Qué necesitas?", "cuando": [{"t": "Hoy mismo", "m": "Lo necesito hoy."}, {"t": "Mañana", "m": "Lo necesito mañana."}, {"t": "Esta semana", "m": "Lo necesito esta semana."}, {"t": "Solo quiero cotizar", "m": "Por ahora solo quiero cotizar."}], "servicios": [{"n": "Gasfitería", "info": "Fugas, llaves, sifones, estanques de WC, destapes e instalación de artefactos sanitarios.", "opts": [], "kw": "gasfiter|arregl|repar|fuga|llave|sifon|wc|estanque|destap"}, {"n": "Calefont y gas", "info": "Reparación y mantención de calefont, redes de gas, medición de presión y planos de gas.", "opts": [], "kw": "calefon|agua caliente|termo|piloto|gas"}, {"n": "Redes de agua", "info": "Instalación y modificación de redes de agua en PPR, cobre y PVC.", "opts": [], "kw": "red|cañer|caner|ppr|cobre|pvc|soldadura"}, {"n": "Accesibilidad", "info": "Adecuaciones de baños y barras de seguridad para personas con movilidad reducida o discapacidad sensorial.", "opts": [], "kw": "barra|movilidad|discapacidad|adulto mayor|accesib"}, {"n": "Repuestos", "info": "Tenemos tienda de repuestos en la página y te asesoramos para elegir el correcto.", "opts": [], "kw": "repuesto|producto|comprar|tienda|venden"}], "faq": [{"pri": true, "kw": "precio|valor|cuanto|costo|cobra|sale|presupuesto|cotiz", "r": "El valor depende del trabajo. Cuéntame qué pasa y te dejo el mensaje listo para pedir el presupuesto."}, {"kw": "donde|direccion|ubicacion|comuna|zona|sector|llegan|van a", "r": "Atendemos en Talca y alrededores. Escríbenos con tu comuna y te confirmamos."}, {"kw": "horario|hora|abren|atienden|sabado|domingo|noche|urgencia|emergencia|24", "r": "Atendemos los lunes de 10:00 a 23:00, de martes a viernes de 10:00 a 22:00 y los sábados de 10:00 a 12:00."}, {"kw": "pago|transferencia|efectivo|tarjeta|boleta|factura", "r": "La forma de pago se coordina directamente por WhatsApp."}, {"kw": "mujer|mujeres|chica|señora|femenin", "r": "Sí, Tecnifem es un equipo de mujeres gasfíter: mujeres que resuelven."}, {"kw": "garantia|seguro|confianza|quien|experiencia", "r": "Tecnifem tiene 5,0 en Google con 20 opiniones. Sus clientes destacan la rapidez, el buen trato y el profesionalismo."}]};</script>
 <script src="asistente.js" defer></script>
-<script src="contenido.js?v=3" defer></script>
+<script src="contenido.js?v=4" defer></script>
 <!-- contador de visitas -->
 <script>(function(){try{var L=localStorage,S=sessionStorage;if(location.search.indexOf('yo=1')>-1)L.setItem('soy-de-la-casa','1');
 if(L.getItem('soy-de-la-casa')||S.getItem('visita-contada'))return;S.setItem('visita-contada','1');

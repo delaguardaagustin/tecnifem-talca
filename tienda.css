@@ -140,3 +140,19 @@
 .visor-marco,.visor-marco iframe{width:100%;height:100%;border:0;display:block}
 .visor-x{position:absolute;top:8px;right:8px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:var(--navy);color:#fff;font:400 1.5rem/1 system-ui,sans-serif;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.s-media img{transition:none}}
+
+/* ---- Carro: resumen, términos y sellos de pago ---- */
+.carro-resumen{display:grid;gap:6px;margin:16px 0;padding:14px;background:var(--fondo);border-radius:14px}
+.carro-resumen div{display:flex;justify-content:space-between;align-items:center;font-size:.95rem}
+.carro-resumen .carro-total{margin:6px 0 0;padding-top:8px;border-top:1px solid var(--linea);font-size:1.05rem}
+.pd-acepto{display:flex!important;gap:10px;align-items:flex-start;font-weight:500!important;font-size:.88rem!important;color:var(--tinta)!important}
+.pd-acepto input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--azul)}
+.pd-wa{margin-top:8px;width:100%}
+.pd-sellos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px}
+.pd-sellos span{font-size:.75rem;font-weight:700;color:var(--navy);background:var(--azul-claro);border-radius:6px;padding:4px 8px}
+.pd-vendedor{color:var(--suave)}
+.carro form small a{color:var(--azul)}
+.t-foto{display:block;text-decoration:none;background:#131f33;border:1px dashed var(--rayo);color:#fff;border-radius:16px;padding:16px}
+.t-foto b{display:block;font-family:var(--display);font-stretch:90%;text-transform:uppercase;font-size:1.05rem;color:var(--rayo)}.t-foto span{font-size:.88rem;color:#dbe6f3}
+
+.pd-acepto[hidden],.t-bloque[hidden]{display:none!important}

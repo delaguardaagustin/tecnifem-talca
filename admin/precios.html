@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Precios y stock · Panel de Tecnifem</title>
+<link rel="icon" href="../assets/icono-tecnifem.png">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,800..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002050;--azul:#0070c0;--azul-claro:#e7f2fb;--rayo:#ffc83d;--suave:#4d5b70;--linea:#dde5ef;--fondo:#f4f7fb;--wa:#1f9d57;--rojo:#b42318}
+*{box-sizing:border-box}body{margin:0;font:400 15px/1.5 "Inter",system-ui,sans-serif;color:#0b1424;background:var(--fondo)}
+header{background:var(--navy);color:#fff}
+header .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 0}
+.wrap{width:min(1100px,100% - 32px);margin:0 auto}
+header a{color:#fff;text-decoration:none;font-weight:700}
+h1{font:900 clamp(1.6rem,5vw,2.2rem)/1.05 "Archivo",sans-serif;font-stretch:88%;text-transform:uppercase;color:var(--navy);margin:26px 0 6px}
+.ayuda{color:var(--suave);margin:0 0 16px;max-width:70ch}
+.barra{position:sticky;top:0;z-index:5;background:var(--fondo);display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linea)}
+.barra input[type=search]{flex:1 1 240px;padding:11px 14px;border:1px solid var(--linea);border-radius:10px;font:inherit}
+.b{border:0;border-radius:10px;min-height:44px;padding:0 18px;font:700 .95rem/1 "Inter",sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.b-pri{background:var(--azul);color:#fff}.b-pri[disabled]{opacity:.45;cursor:not-allowed}
+.b-borde{background:#fff;border:2px solid var(--navy);color:var(--navy)}
+.estado{font-weight:600;min-height:1.4em}
+.estado.ok{color:var(--wa)}.estado.mal{color:var(--rojo)}
+.tabla-c{overflow-x:auto;background:#fff;border:1px solid var(--linea);border-radius:14px;margin:14px 0 40px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:middle}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);background:#fafcfe}
+td.n b{display:block}td.n span{font-size:.8rem;color:var(--suave)}
+td input[type=number]{width:120px;padding:9px 10px;border:1px solid var(--linea);border-radius:8px;font:600 1rem "Inter",sans-serif}
+td input.cambio{border-color:var(--rayo);background:#fffaf0}
+tr.agot td{background:#fafafa}
+.sw{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:600}
+.sw input{width:20px;height:20px;accent-color:var(--rojo)}
+.miniatura{width:44px;height:44px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid var(--linea)}
+.vacio{padding:30px;text-align:center;color:var(--suave)}
+.login{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:24px;margin:20px 0;max-width:560px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="./">← Inicio del panel</a><a href="../#tienda" target="_blank" rel="noopener">Ver la tienda</a></div></header>
+<main class="wrap">
+  <h1>Precios y stock</h1>
+  <p class="ayuda">Cambie aquí los precios de todos los productos de una vez. Escriba el precio sin puntos (ej: <b>12990</b>). Si llena «Precio anterior» con un valor mayor, sale como oferta. Marque «Agotado» cuando no tenga stock. Al terminar apriete <b>Guardar cambios</b>: en 1 o 2 minutos se ve en la página.</p>
+
+  <div class="login" id="login" hidden>
+    <b>Primero inicie sesión.</b>
+    <p class="ayuda">Entre al editor, apriete «Iniciar sesión con GitHub» y vuelva a esta página.</p>
+    <a class="b b-pri" href="editar.html">Iniciar sesión</a>
+  </div>
+
+  <div id="app" hidden>
+    <div class="barra">
+      <input type="search" id="buscar" placeholder="Buscar producto, marca o código…" aria-label="Buscar producto">
+      <button class="b b-pri" id="guardar" disabled>Guardar cambios</button>
+      <span class="estado" id="estado" role="status"></span>
+    </div>
+    <div class="tabla-c"><table>
+      <thead><tr><th></th><th>Producto</th><th>Precio</th><th>Precio anterior (oferta)</th><th>Stock</th></tr></thead>
+      <tbody id="filas"></tbody>
+    </table></div>
+  </div>
+</main>
+<script>
+(function () {
+  var REPO = "delaguardaagustin/tecnifem-talca", RAMA = "main", RUTA = "contenido/productos.json";
+  var API = "https://api.github.com/repos/" + REPO + "/contents/" + RUTA;
+  var token = "", sha = "", datos = null, cambios = 0;
+  function $(id) { return document.getElementById(id); }
+  try { var u = JSON.parse(localStorage.getItem("decap-cms-user") || "null"); token = u && u.token || ""; } catch (e) {}
+  if (!token) { $("login").hidden = false; return; }
+  $("app").hidden = false;
+
+  function b64aTexto(b) { var bin = atob(b.replace(/\n/g, "")), u8 = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); return new TextDecoder().decode(u8); }
+  function textoAb64(t) { var u8 = new TextEncoder().encode(t), s = ""; for (var i = 0; i < u8.length; i += 8192) s += String.fromCharCode.apply(null, u8.subarray(i, i + 8192)); return btoa(s); }
+  function estado(t, cls) { $("estado").textContent = t; $("estado").className = "estado " + (cls || ""); }
+  function gh(url, op) { op = op || {}; op.headers = Object.assign({ Authorization: "token " + token, Accept: "application/vnd.github+json" }, op.headers || {}); return fetch(url, op); }
+
+  function cargar() {
+    estado("Cargando productos…");
+    gh(API + "?ref=" + RAMA + "&t=" + Date.now()).then(function (r) {
+      if (r.status === 401) { localStorage.removeItem("decap-cms-user"); location.reload(); throw 0; }
+      if (!r.ok) throw new Error("No se pudieron leer los productos (" + r.status + ")");
+      return r.json();
+    }).then(function (f) { sha = f.sha; datos = JSON.parse(b64aTexto(f.content)); cambios = 0; pintar(); estado(""); })
+      .catch(function (e) { if (e) estado(e.message || "Error al cargar", "mal"); });
+  }
+
+  function pintar() {
+    var q = $("buscar").value.trim().toLowerCase(), tb = $("filas"); tb.innerHTML = "";
+    var lista = (datos.productos || []);
+    var vis = 0;
+    lista.forEach(function (p, i) {
+      if (q && [p.nombre, p.marca, p.codigo, p.categoria].join(" ").toLowerCase().indexOf(q) < 0) return;
+      vis++;
+      var tr = document.createElement("tr"); if (p.agotado) tr.className = "agot";
+      var td0 = document.createElement("td"); if (p.foto) { var im = document.createElement("img"); im.className = "miniatura"; im.alt = ""; im.src = "../" + p.foto; td0.appendChild(im); }
+      var td1 = document.createElement("td"); td1.className = "n"; var b = document.createElement("b"); b.textContent = p.nombre; var s = document.createElement("span"); s.textContent = [p.categoria, p.marca, p.codigo].filter(Boolean).join(" · "); td1.append(b, s);
+      function numero(campo) {
+        var td = document.createElement("td"), inp = document.createElement("input");
+        inp.type = "number"; inp.min = "0"; inp.step = "10"; inp.inputMode = "numeric"; inp.value = p[campo] || ""; inp.placeholder = campo === "precio" ? "0" : "—";
+        inp.setAttribute("aria-label", (campo === "precio" ? "Precio de " : "Precio anterior de ") + p.nombre);
+        inp.addEventListener("input", function () { var v = Math.max(0, Math.round(Number(inp.value) || 0)); if (v !== (p[campo] || 0)) { p[campo] = v; inp.classList.add("cambio"); marcar(); } });
+        td.appendChild(inp); return td;
+      }
+      var td4 = document.createElement("td"), lab = document.createElement("label"), ch = document.createElement("input");
+      lab.className = "sw"; ch.type = "checkbox"; ch.checked = !!p.agotado; lab.append(ch, document.createTextNode(" Agotado"));
+      ch.addEventListener("change", function () { p.agotado = ch.checked; tr.className = ch.checked ? "agot" : ""; marcar(); });
+      td4.appendChild(lab);
+      tr.append(td0, td1, numero("precio"), numero("precio_anterior"), td4);
+      tb.appendChild(tr);
+    });
+    if (!vis) { var tr = document.createElement("tr"), td = document.createElement("td"); td.colSpan = 5; td.className = "vacio"; td.textContent = "No hay productos con esa búsqueda."; tr.appendChild(td); tb.appendChild(tr); }
+  }
+  function marcar() { cambios++; $("guardar").disabled = false; estado("Hay cambios sin guardar."); }
+
+  $("buscar").addEventListener("input", pintar);
+  $("guardar").addEventListener("click", function () {
+    $("guardar").disabled = true; estado("Guardando…");
+    var cuerpo = { message: "Panel: actualiza precios y stock", content: textoAb64(JSON.stringify(datos, null, 2) + "\n"), sha: sha, branch: RAMA };
+    gh(API, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(cuerpo) })
+      .then(function (r) {
+        if (r.status === 409 || r.status === 422) { estado("Alguien cambió los productos mientras tanto. Se recargó la lista: vuelva a hacer su cambio.", "mal"); cargar(); return; }
+        if (!r.ok) throw new Error("No se pudo guardar (" + r.status + ")");
+        return r.json().then(function (j) { sha = j.content.sha; cambios = 0; estado("¡Guardado! En 1 o 2 minutos se ve en la página.", "ok"); document.querySelectorAll("input.cambio").forEach(function (i) { i.classList.remove("cambio"); }); });
+      }).catch(function (e) { $("guardar").disabled = false; estado(e.message || "No se pudo guardar.", "mal"); });
+  });
+  window.addEventListener("beforeunload", function (ev) { if (cambios) { ev.preventDefault(); ev.returnValue = ""; } });
+  cargar();
+})();
+</script>
+</body>
+</html>

@@ -49,6 +49,9 @@ code{background:var(--azul-claro);color:var(--navy);padding:1px 6px;border-radiu
 .ayuda{margin:34px 0 40px;background:var(--navy);color:#fff;border-radius:20px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
 .ayuda h2{color:#fff;margin:0 0 4px}.ayuda p{margin:0;color:#c9d8ea;max-width:56ch}
 footer{color:var(--suave);font-size:.85rem;padding:0 0 30px}
+.rapido{display:flex;align-items:center;gap:16px;margin:22px 0 0;padding:18px 20px;border-radius:18px;background:var(--rayo);color:var(--navy);text-decoration:none;box-shadow:0 18px 30px -22px rgba(0,0,0,.5)}
+.rapido .ico{font-size:2rem}.rapido b{display:block;font:900 1.2rem/1.1 "Archivo",sans-serif;font-stretch:90%;text-transform:uppercase}
+.rapido span:nth-child(2){flex:1;font-size:.93rem}.rapido .ir{font-weight:800;white-space:nowrap}
 @media (max-width:860px){.pasos,.tareas,.consejos{grid-template-columns:1fr}}
 </style>
 </head>
@@ -71,6 +74,12 @@ footer{color:var(--suave);font-size:.85rem;padding:0 0 30px}
       <li><div><b>Espere 1 o 2 minutos</b><span>Abra su página y recárguela: el cambio ya aparece.</span></div></li>
     </ol>
   </section>
+
+  <a class="rapido" href="precios.html">
+    <span class="ico" aria-hidden="true">💲</span>
+    <span><b>Cambiar precios y stock rápido</b>Todos los productos en una tabla: cambie precios, ofertas y agotados y guarde todo con un botón.</span>
+    <span class="ir">Abrir →</span>
+  </a>
 
   <h2>Tareas</h2>
   <div class="tareas">

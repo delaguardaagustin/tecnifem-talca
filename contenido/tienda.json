@@ -3,5 +3,10 @@
   "titulo": "Repuestos y *productos*",
   "bajada": "Compra en línea lo que necesitas para tu casa. Elige, agrega al carro y coordinamos la entrega.",
   "entrega": "Retiro en Talca o despacho a domicilio; el valor del despacho se confirma por WhatsApp.",
-  "aviso_ejemplo": "Productos de ejemplo: Tecnifem los reemplaza por los suyos desde su panel."
+  "aviso_ejemplo": "Productos de prueba: los precios y las imágenes son referenciales. Tecnifem carga los suyos desde su panel.",
+  "despacho_valor": 0,
+  "razon_social": "",
+  "rut": "",
+  "domicilio": "",
+  "correo": ""
 }

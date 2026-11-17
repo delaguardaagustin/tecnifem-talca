@@ -3,7 +3,8 @@
 (function () {
   var WA = "56945213431";
   // Cuando esté conectado el pago con Flow, aquí va la dirección del servicio que crea el pago.
-  var PAGO_URL = "";
+  var PAGO_URL = "https://pagos-tecnifem.delaguardaagustin.workers.dev";
+  var pagoActivo = false, ajustesTienda = {};
 
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -93,6 +94,11 @@
     if (Array.isArray(s.preguntas) && s.preguntas.length && $("f-preguntas")) {
       $("f-preguntas").innerHTML = s.preguntas.map(function (p, i) { return "<details" + (i ? "" : " open") + "><summary>" + esc(p.pregunta) + "</summary><p>" + esc(p.respuesta) + "</p></details>"; }).join("");
     }
+    var cf = s.confianza || {}, li = [];
+    if (cf.garantia) li.push("<li>✔ " + esc(cf.garantia) + "</li>");
+    if (cf.sec) li.push('<li>✔ ' + esc(cf.sec) + (cf.sec_enlace ? ' · <a href="' + esc(cf.sec_enlace) + '" target="_blank" rel="noopener">verificar</a>' : "") + "</li>");
+    if (cf.visita) li.push("<li>✔ " + esc(cf.visita) + "</li>");
+    if ($("c-confianza")) { $("c-confianza").innerHTML = li.join(""); $("c-confianza").hidden = !li.length; }
     if (s.contacto) cambiarContacto(s.contacto);
   }
 
@@ -189,6 +195,9 @@
     if (!sec) return;
     if (!t || t.activa === false) { sec.hidden = true; $("m-tienda").hidden = true; $("carro-btn").hidden = true; return; }
     sec.hidden = false; $("m-tienda").hidden = false; $("carro-btn").hidden = false;
+    ajustesTienda = t;
+    var v = $("pd-vendedor");
+    if (v) { var dv = [t.razon_social, t.rut ? "RUT " + t.rut : "", t.domicilio, t.correo].filter(Boolean); v.textContent = dv.length ? "Vende: " + dv.join(" · ") : ""; v.hidden = !dv.length; }
     txt("t-titulo", t.titulo, true); txt("t-bajada", t.bajada); txt("t-entrega", t.entrega);
     var av = $("t-aviso"); if (av) { av.textContent = t.aviso_ejemplo || ""; av.hidden = !t.aviso_ejemplo; }
     // El carro se guarda por nombre del producto, así no se confunde si en el panel cambian el orden
@@ -238,10 +247,28 @@
     var ks = Object.keys(carro);
     if (!ks.length) { l.innerHTML = '<p class="t-vacio">Su carro está vacío.</p>'; }
     else l.innerHTML = ks.map(function (k) { var p = prod(k); return '<div class="c-item"><div><b>' + esc(p.nombre) + "</b><span>" + pesos(p.precio) + ' c/u</span></div><div class="c-cant"><button type="button" data-menos="' + esc(k) + '" aria-label="Quitar uno">−</button><span>' + carro[k] + '</span><button type="button" data-mas="' + esc(k) + '" aria-label="Agregar uno">+</button></div><b class="c-sub">' + pesos(p.precio * carro[k]) + "</b></div>"; }).join("");
-    $("carro-total").textContent = pesos(total());
+    var desp = despacho();
+    $("carro-sub").textContent = pesos(total());
+    $("carro-desp").textContent = $("pd-entrega").value === "Despacho a domicilio" ? (desp ? pesos(desp) : "Se confirma por WhatsApp") : "Gratis (retiro)";
+    $("carro-total").textContent = pesos(total() + desp);
     $("carro-pagar").disabled = !ks.length;
+    $("pd-wa").hidden = !ks.length || !pagoActivo;
   }
 
+  function despacho() { return $("pd-entrega") && $("pd-entrega").value === "Despacho a domicilio" ? Math.max(0, Math.round(Number(ajustesTienda.despacho_valor) || 0)) : 0; }
+  function modoPago() {
+    // Con Flow conectado: botón «Pagar con Webpay» y la opción de WhatsApp queda abajo. Sin Flow: el pedido va por WhatsApp.
+    $("carro-pagar").textContent = pagoActivo ? "Pagar con Webpay" : "Enviar pedido por WhatsApp";
+    $("pd-nota").textContent = pagoActivo ? "Pagará en Webpay (Transbank) a través de Flow. Esta página no ve ni guarda los datos de su tarjeta." : "El pago en línea con Webpay se activa al conectar la cuenta de Flow de Tecnifem.";
+    $("pd-acepto-l").hidden = !pagoActivo; $("pd-sellos").hidden = !pagoActivo;
+    $("pd-wa").textContent = "Prefiero coordinar por WhatsApp";
+    pintarCarro();
+  }
+  function pedidoWA() {
+    var ks = Object.keys(carro), nombre = $("pd-nombre").value.trim(), entrega = $("pd-entrega").value, dir = $("pd-dir").value.trim();
+    var lineas = ks.map(function (k) { var p = prod(k); return "• " + carro[k] + " x " + p.nombre + " (" + pesos(p.precio * carro[k]) + ")"; });
+    abrirWA("Hola" + (nombre ? ", soy " + nombre : "") + ". Quiero hacer este pedido en la tienda de su página:\n" + lineas.join("\n") + "\nTotal productos: " + pesos(total()) + "\nEntrega: " + entrega + (dir ? " en " + dir : "") + ".");
+  }
   function abrirCarro(si) { var d = $("carro"); d.classList.toggle("ver", si); d.setAttribute("aria-hidden", si ? "false" : "true"); if (si) $("carro-cerrar").focus(); }
 
   document.addEventListener("click", function (ev) {
@@ -262,29 +289,30 @@
   fPedido && fPedido.addEventListener("submit", function (ev) {
     ev.preventDefault();
     var ks = Object.keys(carro); if (!ks.length) return;
-    var nombre = $("pd-nombre").value.trim(), entrega = $("pd-entrega").value, dir = $("pd-dir").value.trim(), av = $("pd-aviso");
-    if (!nombre) { av.textContent = "Escriba su nombre."; return; }
-    if (entrega === "Despacho a domicilio" && !dir) { av.textContent = "Escriba la dirección de despacho."; return; }
-    av.textContent = "";
-    if (PAGO_URL) {
-      // Pago con Webpay por Flow: el servicio revisa los precios contra contenido/productos.json y devuelve el enlace de pago.
-      fetch(PAGO_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: ks.map(function (k) { return { id: k, cantidad: carro[k] }; }), nombre: nombre, correo: ($("pd-correo") || {}).value || "", entrega: entrega, direccion: dir }) })
-        .then(function (r) { return r.json(); }).then(function (r) { if (r.url) location.href = r.url; else throw 0; })
-        .catch(function () { av.textContent = "No se pudo abrir el pago. Intente de nuevo o envíe el pedido por WhatsApp."; });
-      return;
-    }
-    var lineas = ks.map(function (k) { var p = prod(k); return "• " + carro[k] + " x " + p.nombre + " (" + pesos(p.precio * carro[k]) + ")"; });
-    abrirWA("Hola, soy " + nombre + ". Quiero hacer este pedido en la tienda de su página:\n" + lineas.join("\n") + "\nTotal productos: " + pesos(total()) + "\nEntrega: " + entrega + (dir ? " en " + dir : "") + ".");
+    var nombre = $("pd-nombre").value.trim(), correo = $("pd-correo").value.trim(), entrega = $("pd-entrega").value, dir = $("pd-dir").value.trim(), av = $("pd-aviso");
+    if (!nombre) { av.textContent = "Escriba su nombre."; $("pd-nombre").focus(); return; }
+    if (entrega === "Despacho a domicilio" && !dir) { av.textContent = "Escriba la dirección de despacho."; $("pd-dir").focus(); return; }
+    if (!pagoActivo) { av.textContent = ""; pedidoWA(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)) { av.textContent = "Escriba su correo: ahí le llega el comprobante."; $("pd-correo").focus(); return; }
+    if (!$("pd-acepto").checked) { av.textContent = "Para pagar, acepte los términos de venta."; return; }
+    av.textContent = "Abriendo Webpay…";
+    var btn = $("carro-pagar"); btn.disabled = true;
+    fetch(PAGO_URL + "/crear", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: ks.map(function (k) { return { id: k, cantidad: carro[k] }; }), nombre: nombre, correo: correo, entrega: entrega, direccion: dir }) })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (x) { if (x.ok && x.d.url) { try { sessionStorage.setItem("tecnifem-orden", x.d.orden || ""); } catch (e) {} location.href = x.d.url; } else { av.textContent = x.d.error || "No se pudo abrir el pago."; btn.disabled = false; } })
+      .catch(function () { av.textContent = "No se pudo abrir el pago. Intente de nuevo o envíe el pedido por WhatsApp."; btn.disabled = false; });
   });
+  var bWA = $("pd-wa"); bWA && bWA.addEventListener("click", function () { if (!$("pd-nombre").value.trim()) { $("pd-aviso").textContent = "Escriba su nombre."; return; } pedidoWA(); });
   var tb = $("t-buscar"); tb && tb.addEventListener("input", pintarProductos);
   var tm = $("t-marca"); tm && tm.addEventListener("change", pintarProductos);
   ["t-orden", "t-disp"].forEach(function (id) { var e = $(id); e && e.addEventListener("change", pintarProductos); });
   // En celular los filtros parten cerrados
   if (window.matchMedia && window.matchMedia("(max-width: 860px)").matches) { var tp = document.querySelector(".t-panel"); if (tp) tp.open = false; }
   var selE = $("pd-entrega");
-  selE && selE.addEventListener("change", function () { $("pd-dir-l").hidden = selE.value !== "Despacho a domicilio"; });
+  selE && selE.addEventListener("change", function () { $("pd-dir-l").hidden = selE.value !== "Despacho a domicilio"; pintarCarro(); });
 
   /* ---------- carga ---------- */
+  fetch(PAGO_URL + "/estado").then(function (r) { return r.json(); }).then(function (d) { pagoActivo = !!(d && d.activo); modoPago(); }).catch(function () { modoPago(); });
   cargar("contenido/sitio.json").then(pintarTextos).catch(function () {});
   cargar("contenido/servicios.json").then(pintarServicios).catch(function () {});
   Promise.all([cargar("contenido/tienda.json"), cargar("contenido/productos.json")])

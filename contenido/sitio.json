@@ -150,5 +150,11 @@
     "horario_corto": "Lunes, 10:00 a 23:00",
     "horario_detalle": "Martes a viernes, 10:00 a 22:00 · Sábado, 10:00 a 12:00",
     "zona": "Talca"
+  },
+  "confianza": {
+    "garantia": "",
+    "sec": "",
+    "sec_enlace": "",
+    "visita": ""
   }
 }
