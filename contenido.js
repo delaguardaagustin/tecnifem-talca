@@ -36,6 +36,8 @@
     if (window.ASISTENTE && wa) window.ASISTENTE.wa = wa;
     txt("c-hor-franja", c.horario_corto); txt("c-hor1", c.horario_corto);
     txt("c-hor2", c.horario_detalle); txt("c-zona", c.zona); txt("c-zona-franja", c.zona);
+    if (c.instagram && $("v-ig")) $("v-ig").href = "https://www.instagram.com/" + c.instagram.replace(/^@/, "") + "/";
+    if ($("v-tk")) { $("v-tk").hidden = !c.tiktok; if (c.tiktok) $("v-tk").href = "https://www.tiktok.com/@" + c.tiktok.replace(/^@/, ""); }
     var tk = $("c-tiktok");
     if (tk) { tk.hidden = !c.tiktok; if (c.tiktok) { tk.href = "https://www.tiktok.com/@" + c.tiktok.replace(/^@/, ""); tk.textContent = "TikTok @" + c.tiktok.replace(/^@/, ""); } }
   }
@@ -43,7 +45,7 @@
   function pintarTextos(s) {
     if (s.aviso && s.aviso.texto) document.documentElement.style.setProperty("--aviso-txt", JSON.stringify(s.aviso.texto));
     if (s.aviso && s.aviso.texto === "") document.documentElement.style.setProperty("--aviso-txt", "none");
-    if (s.portada) { txt("c-ojo", s.portada.etiqueta); txt("c-titulo", s.portada.titulo, true); txt("c-bajada", s.portada.bajada); img("c-foto", s.portada.foto); }
+    if (s.portada) { txt("c-ojo", s.portada.etiqueta); txt("c-titulo", s.portada.titulo, true); txt("c-bajada", s.portada.bajada); img("c-foto", s.portada.foto); img("c-foto2", s.portada.foto2); txt("c-eslogan", s.portada.eslogan); }
     var n = s.nosotros;
     if (n) {
       txt("n-titulo", n.titulo, true); txt("n-texto", n.texto); img("n-foto", n.foto);
@@ -54,13 +56,24 @@
     if (Array.isArray(s.pasos) && s.pasos.length && $("p-pasos")) {
       $("p-pasos").innerHTML = s.pasos.map(function (p) { return "<li><h3>" + esc(p.titulo) + "</h3><p>" + esc(p.texto) + "</p></li>"; }).join("");
     }
+    var v = s.videos;
+    if (v && $("v-lista")) {
+      txt("v-titulo", v.titulo, true); txt("v-bajada", v.bajada);
+      var vids = (v.lista || []).filter(function (x) { return x && x.enlace; });
+      $("videos").hidden = !vids.length;
+      $("v-lista").innerHTML = vids.map(function (x) {
+        var m = String(x.enlace).match(/instagram\.com\/(?:[^\/]+\/)?(reel|p)\/([A-Za-z0-9_-]+)/);
+        var emb = m ? "https://www.instagram.com/" + m[1] + "/" + m[2] + "/embed" : "";
+        return '<button type="button" class="vid" data-emb="' + esc(emb) + '" data-url="' + esc(x.enlace) + '" aria-label="Ver video: ' + esc(x.titulo) + '">' + (x.portada ? '<img src="' + esc(x.portada) + '" alt="" loading="lazy">' : "") + '<span class="play"><svg aria-hidden="true"><use href="#play"/></svg></span><span class="t">' + esc(x.titulo) + "</span></button>";
+      }).join("");
+    }
     var g = s.galeria, gs = $("trabajos");
     if (gs) {
       var fotos = (g && Array.isArray(g.fotos)) ? g.fotos.filter(function (f) { return f && f.foto; }) : [];
       gs.hidden = !fotos.length;
       if (fotos.length) {
         txt("g-titulo", g.titulo, true); txt("g-bajada", g.bajada);
-        $("g-fotos").innerHTML = fotos.map(function (f) { return '<img src="' + esc(f.foto) + '" alt="' + esc(f.texto || "Trabajo de Tecnifem") + '" loading="lazy">'; }).join("");
+        $("g-fotos").innerHTML = fotos.map(function (f) { return '<figure><img src="' + esc(f.foto) + '" alt="' + esc(f.texto || "Trabajo de Tecnifem") + '" loading="lazy">' + (f.texto ? "<figcaption>" + esc(f.texto) + "</figcaption>" : "") + "</figure>"; }).join("");
       }
     }
     var r = s.resenas;
@@ -90,6 +103,7 @@
     txt("s-titulo", sv.titulo, true); txt("s-bajada", sv.bajada); txt("s-nota", sv.nota);
     servicios = (sv.servicios || []).filter(function (x) { return x && x.nombre && x.visible !== false; });
     if (!servicios.length) return;
+    if ($("cifra-serv")) $("cifra-serv").textContent = servicios.length > 9 ? "+" + Math.floor(servicios.length / 5) * 5 : String(servicios.length);
     var hayDest = servicios.some(function (x) { return x.destacado; });
     if (!hayDest) filtroS = "Todos";
     var cats = hayDest ? ["Principales"] : [];
@@ -105,6 +119,17 @@
       return '<article class="s-item"><span class="t-cat">' + esc(x.categoria || "") + "</span><h3>" + esc(x.nombre) + "</h3>" + (x.descripcion ? "<p>" + esc(x.descripcion) + "</p>" : "") + '<a class="s-cot" data-s="' + esc(x.nombre) + '" href="#">Cotizar por WhatsApp →</a></article>';
     }).join("");
   }
+
+  // Videos: al tocar se carga el video de Instagram dentro de la tarjeta
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest(".vid[data-url]");
+    if (!b || b.classList.contains("on")) return;
+    var emb = b.getAttribute("data-emb");
+    if (!emb) { window.open(b.getAttribute("data-url"), "_blank", "noopener"); return; }
+    b.classList.add("on");
+    var i = document.createElement("iframe"); i.src = emb; i.title = "Video de Instagram"; i.allow = "autoplay; encrypted-media; picture-in-picture"; i.setAttribute("allowfullscreen", ""); i.loading = "lazy";
+    b.appendChild(i);
+  });
 
   // Botones «Cotizar» y filtros de servicios
   document.addEventListener("click", function (ev) {
@@ -133,25 +158,37 @@
     txt("t-titulo", t.titulo, true); txt("t-bajada", t.bajada); txt("t-entrega", t.entrega);
     var av = $("t-aviso"); if (av) { av.textContent = t.aviso_ejemplo || ""; av.hidden = !t.aviso_ejemplo; }
     // El carro se guarda por nombre del producto, así no se confunde si en el panel cambian el orden
-    productos = (lista || []).filter(function (p) { return p && p.nombre; }).map(function (p) { return { id: String(p.nombre).trim(), nombre: p.nombre || "", categoria: p.categoria || "Otros", precio: Number(p.precio) || 0, foto: p.foto || "", descripcion: p.descripcion || "", agotado: !!p.agotado }; });
+    productos = (lista || []).filter(function (p) { return p && p.nombre; }).map(function (p) { return { id: String(p.nombre).trim(), nombre: p.nombre || "", categoria: p.categoria || "Otros", precio: Number(p.precio) || 0, antes: Number(p.precio_anterior) || 0, foto: p.foto || "", descripcion: p.descripcion || "", agotado: !!p.agotado, codigo: p.codigo || "", marca: p.marca || "", compatible: p.compatible || "" }; });
     // Si el panel cambió la lista, se limpia del carro lo que ya no existe o quedó sin precio
     for (var k in carro) { var p = prod(k); if (!p || p.agotado || !p.precio) delete carro[k]; }
     var cats = ["Todos"]; productos.forEach(function (p) { if (cats.indexOf(p.categoria) < 0) cats.push(p.categoria); });
     $("t-filtros").innerHTML = cats.length > 2 ? cats.map(function (c) { return '<button type="button" class="chip' + (c === filtro ? " on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"; }).join("") : "";
+    var marcas = []; productos.forEach(function (p) { if (p.marca && marcas.indexOf(p.marca) < 0) marcas.push(p.marca); });
+    var sm = $("t-marca");
+    if (sm) { sm.hidden = !marcas.length; sm.innerHTML = '<option value="">Todas las marcas</option>' + marcas.sort().map(function (m) { return "<option>" + esc(m) + "</option>"; }).join(""); }
     pintarProductos(); pintarCarro();
   }
 
   function pintarProductos() {
     var g = $("t-grilla"); if (!g) return;
-    var vis = productos.filter(function (p) { return filtro === "Todos" || p.categoria === filtro; });
-    if (!vis.length) { g.innerHTML = '<p class="t-vacio">Pronto agregaremos productos en esta categoría.</p>'; return; }
+    var q = ($("t-buscar") && $("t-buscar").value || "").trim().toLowerCase(), mq = $("t-marca") ? $("t-marca").value : "";
+    var vis = productos.filter(function (p) {
+      if (filtro !== "Todos" && p.categoria !== filtro) return false;
+      if (mq && p.marca !== mq) return false;
+      if (q && (p.nombre + " " + p.descripcion + " " + p.codigo + " " + p.marca + " " + p.compatible).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    if (!vis.length) { g.innerHTML = '<p class="t-vacio">' + (q || mq ? "No encontramos productos con esa búsqueda. Escríbenos por WhatsApp y te ayudamos a encontrar el repuesto." : "Pronto agregaremos productos en esta categoría.") + "</p>"; return; }
     g.innerHTML = vis.map(function (p) {
       var foto = p.foto ? '<img src="' + esc(p.foto) + '" alt="' + esc(p.nombre) + '" loading="lazy">' : '<div class="t-sinfoto"><svg aria-hidden="true"><use href="#i-caja"/></svg></div>';
-      var precio = p.precio ? pesos(p.precio) : "Precio por confirmar";
-      var boton = p.agotado ? '<button type="button" class="btn t-agregar" disabled>Agotado</button>'
+      var oferta = p.precio && p.antes > p.precio;
+      var precio = p.precio ? (oferta ? "<s>" + pesos(p.antes) + "</s> " : "") + pesos(p.precio) : "Precio por confirmar";
+      var boton = p.agotado ? '<button type="button" class="btn btn-osc t-agregar" data-avisar="' + esc(p.id) + '">Avisarme cuando llegue</button>'
         : p.precio ? '<button type="button" class="btn btn-pri t-agregar" data-add="' + esc(p.id) + '">Agregar al carro</button>'
         : '<button type="button" class="btn btn-osc t-agregar" data-preg="' + esc(p.id) + '">Consultar precio</button>';
-      return '<article class="t-prod' + (p.agotado ? " agotado" : "") + '">' + foto + '<div class="t-cuerpo"><span class="t-cat">' + esc(p.categoria) + "</span><h3>" + esc(p.nombre) + "</h3>" + (p.descripcion ? "<p>" + esc(p.descripcion) + "</p>" : "") + '<b class="t-precio">' + precio + "</b>" + boton + "</div></article>";
+      var etiquetas = (p.agotado ? '<span class="t-badge agot">Agotado</span>' : oferta ? '<span class="t-badge oferta">-' + Math.round((1 - p.precio / p.antes) * 100) + "%</span>" : "");
+      var meta = (p.marca ? '<span class="t-marca-tag">' + esc(p.marca) + "</span>" : "") + (p.codigo ? '<span class="t-cod">Cód. ' + esc(p.codigo) + "</span>" : "");
+      return '<article class="t-prod' + (p.agotado ? " agotado" : "") + '"><div class="t-img">' + foto + etiquetas + '</div><div class="t-cuerpo"><span class="t-cat">' + esc(p.categoria) + "</span><h3>" + esc(p.nombre) + "</h3>" + (meta ? '<div class="t-meta">' + meta + "</div>" : "") + (p.compatible ? '<p class="t-compat"><b>Compatible con:</b> ' + esc(p.compatible) + "</p>" : "") + (p.descripcion ? "<p>" + esc(p.descripcion) + "</p>" : "") + '<b class="t-precio">' + precio + "</b>" + boton + "</div></article>";
     }).join("");
   }
 
@@ -171,6 +208,7 @@
     var b = ev.target.closest ? ev.target.closest("button,[data-cat]") : null; if (!b) return;
     if (b.dataset.cat !== undefined && b.dataset.cat !== "") { filtro = b.dataset.cat; document.querySelectorAll("#t-filtros .chip").forEach(function (c) { c.classList.toggle("on", c.dataset.cat === filtro); }); pintarProductos(); return; }
     if (b.dataset.add) { carro[b.dataset.add] = (carro[b.dataset.add] || 0) + 1; guardar(); pintarCarro(); b.textContent = "Agregado ✓"; setTimeout(function () { b.textContent = "Agregar al carro"; }, 1200); return; }
+    if (b.dataset.avisar) { abrirWA("Hola, vi su tienda en la página web. ¿Me avisan cuando les llegue: " + prod(b.dataset.avisar).nombre + "?"); return; }
     if (b.dataset.preg) { abrirWA("Hola, vi su tienda en la página web y quiero saber el precio de: " + prod(b.dataset.preg).nombre); return; }
     if (b.dataset.mas) { carro[b.dataset.mas]++; guardar(); pintarCarro(); return; }
     if (b.dataset.menos) { if (--carro[b.dataset.menos] <= 0) delete carro[b.dataset.menos]; guardar(); pintarCarro(); return; }
@@ -190,7 +228,7 @@
     av.textContent = "";
     if (PAGO_URL) {
       // Pago con Webpay por Flow: el servicio revisa los precios contra contenido/productos.json y devuelve el enlace de pago.
-      fetch(PAGO_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: ks.map(function (k) { return { id: k, cantidad: carro[k] }; }), nombre: nombre, entrega: entrega, direccion: dir }) })
+      fetch(PAGO_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: ks.map(function (k) { return { id: k, cantidad: carro[k] }; }), nombre: nombre, correo: ($("pd-correo") || {}).value || "", entrega: entrega, direccion: dir }) })
         .then(function (r) { return r.json(); }).then(function (r) { if (r.url) location.href = r.url; else throw 0; })
         .catch(function () { av.textContent = "No se pudo abrir el pago. Intente de nuevo o envíe el pedido por WhatsApp."; });
       return;
@@ -198,6 +236,8 @@
     var lineas = ks.map(function (k) { var p = prod(k); return "• " + carro[k] + " x " + p.nombre + " (" + pesos(p.precio * carro[k]) + ")"; });
     abrirWA("Hola, soy " + nombre + ". Quiero hacer este pedido en la tienda de su página:\n" + lineas.join("\n") + "\nTotal productos: " + pesos(total()) + "\nEntrega: " + entrega + (dir ? " en " + dir : "") + ".");
   });
+  var tb = $("t-buscar"); tb && tb.addEventListener("input", pintarProductos);
+  var tm = $("t-marca"); tm && tm.addEventListener("change", pintarProductos);
   var selE = $("pd-entrega");
   selE && selE.addEventListener("change", function () { $("pd-dir-l").hidden = selE.value !== "Despacho a domicilio"; });
 

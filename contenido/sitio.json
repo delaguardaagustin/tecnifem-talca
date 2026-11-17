@@ -1,31 +1,32 @@
 {
   "aviso": {
-    "texto": "5,0 ★ en Google · 20 opiniones · Pide tu visita por WhatsApp"
+    "texto": "⚡ Mujeres que resuelven · 5,0 ★ en Google · Talca y alrededores"
   },
   "portada": {
-    "etiqueta": "Gasfitería a domicilio · Talca",
-    "titulo": "Tu problema de gasfitería, *resuelto*",
-    "bajada": "Gasfitería a domicilio en Talca. Cuéntanos qué pasa y coordinamos la visita por WhatsApp.",
-    "foto": "assets/hero.jpg"
+    "etiqueta": "Gasfitería y calefont · Talca",
+    "titulo": "Mujeres que *resuelven*",
+    "bajada": "Somos Tecnifem: reparamos fugas, calefont y redes de agua y gas en Talca y alrededores. Escríbenos y coordinamos la visita.",
+    "foto": "assets/fotos/trabajo-demolicion.jpg",
+    "foto2": "assets/fotos/calefont-revision.jpg"
   },
   "nosotros": {
-    "titulo": "Lo que dicen *sus clientes*",
-    "texto": "Quienes han contratado a Tecnifem destacan en Google la rapidez, el buen trato y el profesionalismo.",
+    "titulo": "Gasfitería hecha *por mujeres*",
+    "texto": "Tecnifem es un equipo de mujeres gasfíter en Talca. Sus clientes destacan en Google la rapidez, el buen trato y que les explican cada detalle del trabajo.",
+    "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
     "puntos": [
       {
         "titulo": "Respuesta rápida.",
-        "texto": "Resuelven en poco tiempo, según sus opiniones."
+        "texto": "Resuelven en poco tiempo, según sus opiniones en Google."
       },
       {
-        "titulo": "Buen trato.",
-        "texto": "La amabilidad se repite en sus opiniones."
+        "titulo": "Te explicamos todo.",
+        "texto": "Qué pasó, cómo se arregló y cómo evitar que vuelva a pasar."
       },
       {
-        "titulo": "Trabajo profesional.",
-        "texto": "Así lo describen quienes los contrataron."
+        "titulo": "Trabajo prolijo.",
+        "texto": "Dejamos funcionando y limpio."
       }
-    ],
-    "foto": "assets/nos.jpg"
+    ]
   },
   "pasos": [
     {
@@ -41,17 +42,67 @@
       "texto": "Hacemos el trabajo y te explicamos qué se hizo."
     }
   ],
-  "galeria": {
-    "titulo": "Nuestros *trabajos*",
-    "bajada": "Algunos trabajos realizados por Tecnifem.",
-    "fotos": [
+  "videos": {
+    "titulo": "Míranos *trabajar*",
+    "bajada": "Videos de nuestros trabajos y consejos en Instagram y TikTok.",
+    "lista": [
       {
-        "foto": "assets/hero.jpg",
-        "texto": "Trabajo de Tecnifem"
+        "titulo": "¿Se te apaga el calefont?",
+        "enlace": "https://www.instagram.com/reel/DbYllBgxtsR/",
+        "portada": "assets/fotos/video-se-apaga-calefont.jpg"
       },
       {
-        "foto": "assets/nos.jpg",
-        "texto": "Trabajo de Tecnifem"
+        "titulo": "«El otro gasfíter me cobraba más barato»",
+        "enlace": "https://www.instagram.com/reel/DcSWaFNRj0f/",
+        "portada": "assets/fotos/video-otro-gasfiter.jpg"
+      },
+      {
+        "titulo": "Calefont y gas: trabajo en terreno",
+        "enlace": "https://www.instagram.com/reel/DZ_D29Xxso9/",
+        "portada": "assets/fotos/trabajo-calefont-gas.jpg"
+      },
+      {
+        "titulo": "¿Qué haces con tus pilas viejas?",
+        "enlace": "https://www.instagram.com/reel/DbM8n93OzDE/",
+        "portada": "assets/fotos/video-pilas.jpg"
+      }
+    ]
+  },
+  "galeria": {
+    "titulo": "Nuestros *trabajos*",
+    "bajada": "Algunos trabajos de Tecnifem en Talca.",
+    "fotos": [
+      {
+        "foto": "assets/fotos/trabajo-lavamanos-dobles.jpg",
+        "texto": "Instalación de lavamanos dobles"
+      },
+      {
+        "foto": "assets/fotos/trabajo-demolicion.jpg",
+        "texto": "Apertura de muro para reparar cañerías"
+      },
+      {
+        "foto": "assets/fotos/canerias-calefont.jpg",
+        "texto": "Cañerías de calefont"
+      },
+      {
+        "foto": "assets/fotos/trabajo-canerias.jpg",
+        "texto": "Desagüe bajo lavaplatos"
+      },
+      {
+        "foto": "assets/fotos/lavamanos-instalado.jpg",
+        "texto": "Lavamanos y grifería"
+      },
+      {
+        "foto": "assets/fotos/trabajo-lavaplatos.jpg",
+        "texto": "Instalación de lavaplatos"
+      },
+      {
+        "foto": "assets/fotos/calefont-revision.jpg",
+        "texto": "Revisión de calefont"
+      },
+      {
+        "foto": "assets/fotos/trabajo-desague.jpg",
+        "texto": "Reparación de desagüe"
       }
     ]
   },

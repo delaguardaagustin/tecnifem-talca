@@ -5,10 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Panel de Tecnifem</title>
-<link rel="icon" href="../assets/icono.png">
+<link rel="icon" href="../assets/icono-tecnifem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,700..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002050;--azul:#0070c0;--azul-claro:#e7f2fb;--rayo:#ffc83d;--tinta:#0b1424;--suave:#4d5b70;--linea:#dde5ef;--fondo:#f4f7fb;--wa:#1f9d57}
+*{box-sizing:border-box}
+body{margin:0;font:400 16px/1.55 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tinta);background:var(--fondo)}
+a{color:inherit}
+h1,h2,h3{font-family:"Archivo","Arial Narrow",sans-serif;font-stretch:88%;margin:0;line-height:1.05;color:var(--navy)}
+.wrap{width:min(1080px,100% - 32px);margin:0 auto}
+header{background:var(--navy);color:#fff}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca img{height:46px;background:#fff;border-radius:10px;padding:4px 6px}
+.marca span{font:800 1.05rem/1.2 "Archivo",sans-serif;font-stretch:90%}.marca small{display:block;font:500 .78rem/1.2 "Inter",sans-serif;color:#b8cbe2}
+.top-btns{display:flex;flex-wrap:wrap;gap:8px}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid transparent}
+.b-blanco{background:#fff;color:var(--navy)}.b-borde{border-color:rgba(255,255,255,.5);color:#fff}
+.b-pri{background:var(--azul);color:#fff}.b-wa{background:var(--wa);color:#fff}
+.hola{padding:34px 0 10px}
+.hola h1{font-size:clamp(2rem,5vw,2.8rem);font-weight:900;text-transform:uppercase}
+.hola h1 em{font-style:normal;color:var(--azul)}
+.hola p{max-width:62ch;color:var(--suave);margin:10px 0 0}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 8px;padding:0;list-style:none;counter-reset:p}
+.pasos li{counter-increment:p;background:#fff;border:1px solid var(--linea);border-radius:16px;padding:16px 16px 14px;display:flex;gap:12px;align-items:flex-start}
+.pasos li::before{content:counter(p);flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--rayo);color:var(--navy);font:900 1.05rem/1 "Archivo",sans-serif}
+.pasos b{display:block;color:var(--navy)}.pasos span{font-size:.9rem;color:var(--suave)}
+h2{font-size:1.5rem;text-transform:uppercase;margin:34px 0 14px}
+.tareas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tarea{background:#fff;border:1px solid var(--linea);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:10px;border-top:5px solid var(--azul)}
+.tarea .ico{font-size:1.7rem;line-height:1}
+.tarea h3{font-size:1.2rem}
+.tarea p{margin:0;color:var(--suave);font-size:.93rem}
+.tarea ol{margin:0;padding-left:18px;font-size:.9rem;color:var(--tinta)}
+.tarea ol li{margin:3px 0}
+.tarea .b{margin-top:auto;align-self:flex-start}
+.tarea.sin-stock{border-top-color:#1b2533}.tarea.fotos{border-top-color:var(--rayo)}.tarea.tienda{border-top-color:var(--wa)}
+.consejos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.consejos li{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:14px 16px;font-size:.93rem}
+.consejos b{color:var(--navy)}
+code{background:var(--azul-claro);color:var(--navy);padding:1px 6px;border-radius:6px;font-size:.9em}
+.ayuda{margin:34px 0 40px;background:var(--navy);color:#fff;border-radius:20px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.ayuda h2{color:#fff;margin:0 0 4px}.ayuda p{margin:0;color:#c9d8ea;max-width:56ch}
+footer{color:var(--suave);font-size:.85rem;padding:0 0 30px}
+@media (max-width:860px){.pasos,.tareas,.consejos{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-<!-- Panel de administración (Decap CMS). La configuración está en admin/config.yml. -->
-<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<header><div class="wrap">
+  <a class="marca" href="../" target="_blank" rel="noopener"><img src="../assets/logo-tecnifem.png" alt="Tecnifem"><span>Panel de Tecnifem<small>Aquí se edita la página</small></span></a>
+  <div class="top-btns">
+    <a class="b b-borde" href="../" target="_blank" rel="noopener">Ver mi página</a>
+    <a class="b b-blanco" href="editar.html">Entrar al editor →</a>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="hola">
+    <h1>¿Qué quiere <em>cambiar hoy?</em></h1>
+    <p>Desde este panel cambia productos, precios, stock, servicios, fotos, videos y textos de su página, sin saber programar. Elija una tarea abajo: cada botón la lleva directo al lugar correcto.</p>
+    <ol class="pasos">
+      <li><div><b>Inicie sesión</b><span>La primera vez apriete «Iniciar sesión con GitHub» y entre con su cuenta.</span></div></li>
+      <li><div><b>Haga el cambio y apriete «Publicar»</b><span>Arriba a la derecha del editor. Elija «Publicar ahora».</span></div></li>
+      <li><div><b>Espere 1 o 2 minutos</b><span>Abra su página y recárguela: el cambio ya aparece.</span></div></li>
+    </ol>
+  </section>
+
+  <h2>Tareas</h2>
+  <div class="tareas">
+    <article class="tarea">
+      <span class="ico" aria-hidden="true">🛒</span>
+      <h3>Agregar o cambiar productos</h3>
+      <p>Precios, fotos, descripciones, ofertas y la marca del calefont compatible.</p>
+      <ol><li>Apriete «Agregar producto» o abra uno de la lista.</li><li>Llene nombre, categoría, precio y foto.</li><li>Apriete «Publicar».</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/tienda/entries/productos">Ir a productos</a>
+    </article>
+    <article class="tarea sin-stock">
+      <span class="ico" aria-hidden="true">⛔</span>
+      <h3>Marcar sin stock</h3>
+      <p>El producto sigue a la vista con la etiqueta «Agotado» y el cliente puede pedir aviso por WhatsApp.</p>
+      <ol><li>Abra el producto en la lista.</li><li>Active «Agotado (sin stock)».</li><li>Cuando llegue, desactívelo y publique.</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/tienda/entries/productos">Ir a productos</a>
+    </article>
+    <article class="tarea">
+      <span class="ico" aria-hidden="true">🔧</span>
+      <h3>Servicios</h3>
+      <p>Agregue trabajos nuevos, oculte los que no está haciendo y elija cuáles salen primero.</p>
+      <ol><li>Abra la lista de servicios.</li><li>Marque «Principal» para que salga primero, o quite «Visible» para ocultarlo.</li><li>Publique.</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/servicios/entries/lista">Ir a servicios</a>
+    </article>
+    <article class="tarea fotos">
+      <span class="ico" aria-hidden="true">📸</span>
+      <h3>Fotos de trabajos y videos</h3>
+      <p>Suba fotos de sus trabajos a la galería o agregue un video de Instagram.</p>
+      <ol><li>Abra «Galería de trabajos» o «Videos».</li><li>Agregue una foto, o pegue el enlace del video (en Instagram: ⋯ → Copiar enlace).</li><li>Publique.</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/pagina/entries/textos">Ir a fotos y videos</a>
+    </article>
+    <article class="tarea">
+      <span class="ico" aria-hidden="true">📝</span>
+      <h3>Textos, horario y contacto</h3>
+      <p>Portada, «Nosotras», preguntas frecuentes, opiniones de Google, teléfono, horario y redes.</p>
+      <ol><li>Abra «Página completa».</li><li>Despliegue la sección que quiere cambiar.</li><li>Publique.</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/pagina/entries/textos">Ir a textos</a>
+    </article>
+    <article class="tarea tienda">
+      <span class="ico" aria-hidden="true">🏪</span>
+      <h3>Encender o apagar la tienda</h3>
+      <p>Si se va de vacaciones o no tiene productos, apague la tienda y desaparece de la página sin borrar nada.</p>
+      <ol><li>Abra «Ajustes de la tienda».</li><li>Active o desactive «Tienda activa».</li><li>Publique.</li></ol>
+      <a class="b b-pri" href="editar.html#/collections/tienda/entries/ajustes">Ir a ajustes</a>
+    </article>
+  </div>
+
+  <h2>Consejos</h2>
+  <ul class="consejos">
+    <li><b>Fotos:</b> mejor cuadradas, con buena luz y de menos de 1 MB. Desde el celular se pueden subir directo.</li>
+    <li><b>Precios:</b> escríbalos sin puntos ni signo peso. Ejemplo: <code>12990</code>.</li>
+    <li><b>Palabras destacadas:</b> en los títulos, lo que va entre asteriscos sale en color. Ejemplo: <code>Mujeres que *resuelven*</code>.</li>
+    <li><b>Ocultar en vez de borrar:</b> los servicios se pueden ocultar y los productos marcar como agotados, así no pierde lo que ya escribió.</li>
+  </ul>
+
+  <section class="ayuda">
+    <div><h2>¿Se equivocó o algo no se ve?</h2><p>No se preocupe: cada cambio queda guardado y se puede volver atrás. Escríbanos y lo revisamos.</p></div>
+    <a class="b b-wa" href="https://wa.me/56974479565?text=Hola%20Agust%C3%ADn%2C%20necesito%20ayuda%20con%20el%20panel%20de%20Tecnifem" target="_blank" rel="noopener">Pedir ayuda por WhatsApp</a>
+  </section>
+</main>
+<footer class="wrap">Panel hecho por SENTRY-CODE para Tecnifem.</footer>
 </body>
 </html>
