@@ -24,5 +24,19 @@
 </div>
 <!-- Editor (Decap CMS). La configuración está en admin/config.yml. -->
 <script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<script>
+// Traduce los textos que Decap deja en inglés (por ejemplo «Add producto» → «Agregar producto»).
+(function () {
+  var T = [[/^Add (.+)$/, "Agregar $1"], [/^Delete$/, "Borrar"], [/^Choose an image$/, "Elegir una imagen"], [/^Choose different image$/, "Elegir otra imagen"], [/^Remove image$/, "Quitar imagen"], [/^Upload$/, "Subir"]];
+  function traducir(n) {
+    if (n.nodeType !== 3 || !n.nodeValue.trim()) return;
+    var v = n.nodeValue.trim();
+    for (var i = 0; i < T.length; i++) if (T[i][0].test(v)) { n.nodeValue = n.nodeValue.replace(v, v.replace(T[i][0], T[i][1])); return; }
+  }
+  function recorrer(raiz) { var w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) traducir(n); }
+  new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { n.nodeType === 3 ? traducir(n) : n.nodeType === 1 && recorrer(n); }); if (m.type === "characterData") traducir(m.target); }); })
+    .observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+})();
+</script>
 </body>
 </html>

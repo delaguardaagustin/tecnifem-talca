@@ -46,10 +46,10 @@ collections:
               - { label: Nombre, name: nombre, widget: string }
               - { label: Categoría, name: categoria, widget: string, hint: "Escríbala igual en todos los productos de la misma categoría. Ej: Repuestos de calefont, Gasfitería, Herramientas." }
               - { label: "Precio (en pesos, sin puntos)", name: precio, widget: number, value_type: int, min: 0, hint: "Ejemplo: 12990. Si deja 0, se muestra «Precio por confirmar» y el botón lleva a WhatsApp." }
-              - { label: "Precio anterior (opcional, para mostrar oferta)", name: precio_anterior, widget: number, value_type: int, min: 0, required: false, hint: "Si lo llena con un valor mayor al precio, el precio anterior sale tachado y aparece el % de descuento." }
-              - { label: "Marca del calefont o del producto (opcional)", name: marca, widget: string, required: false, hint: "Ej: Junkers, Splendid, Mademsa, Neckar, Trotter. Sirve para el filtro por marca de la tienda." }
-              - { label: "Compatible con (opcional)", name: compatible, widget: string, required: false, hint: "Ej: Junkers de 10 y 13 litros, encendido a pilas." }
-              - { label: "Código (opcional)", name: codigo, widget: string, required: false }
+              - { label: "Precio anterior (para mostrar oferta)", name: precio_anterior, widget: number, value_type: int, min: 0, required: false, hint: "Si lo llena con un valor mayor al precio, el precio anterior sale tachado y aparece el % de descuento." }
+              - { label: "Marca del calefont o del producto", name: marca, widget: string, required: false, hint: "Ej: Junkers, Splendid, Mademsa, Neckar, Trotter. Sirve para el filtro por marca de la tienda." }
+              - { label: "Compatible con", name: compatible, widget: string, required: false, hint: "Ej: Junkers de 10 y 13 litros, encendido a pilas." }
+              - { label: "Código", name: codigo, widget: string, required: false }
               - { label: Foto, name: foto, widget: image, required: false, choose_url: false, hint: "Foto cuadrada, idealmente de menos de 1 MB." }
               - { label: Descripción, name: descripcion, widget: text, required: false }
               - { label: "Agotado (sin stock)", name: agotado, widget: boolean, default: false, required: false, hint: "Si lo marca, el producto sigue a la vista con la etiqueta «Agotado» y un botón para que el cliente pida aviso por WhatsApp." }
@@ -92,8 +92,8 @@ collections:
               - { label: Nombre, name: nombre, widget: string }
               - { label: Categoría, name: categoria, widget: string, hint: "Escríbala igual en los servicios de la misma categoría. Ej: Gasfitería, Calefont y gas, Redes de agua, Accesibilidad." }
               - { label: Descripción corta, name: descripcion, widget: text, required: false }
-              - { label: "Foto del servicio (opcional)", name: foto, widget: image, choose_url: false, required: false, hint: "Una foto de un trabajo de este tipo. Si no sube una, se muestra un dibujo de la categoría." }
-              - { label: "Video de Instagram (opcional)", name: video, widget: string, required: false, hint: "Pegue el enlace del reel (en Instagram: ⋯ → Copiar enlace). Aparece un botón «Ver video» en la tarjeta." }
+              - { label: "Foto del servicio", name: foto, widget: image, choose_url: false, required: false, hint: "Una foto de un trabajo de este tipo. Si no sube una, se muestra un dibujo de la categoría." }
+              - { label: "Video de Instagram", name: video, widget: string, required: false, hint: "Pegue el enlace del reel (en Instagram: ⋯ → Copiar enlace). Aparece un botón «Ver video» en la tarjeta." }
               - { label: "Principal (aparece primero)", name: destacado, widget: boolean, default: false, required: false }
               - { label: "Visible en la página", name: visible, widget: boolean, default: true, required: false, hint: "Desmárquelo para ocultar un servicio sin borrarlo." }
 
@@ -121,7 +121,7 @@ collections:
             fields:
               - { label: "Garantía", name: garantia, widget: string, required: false, hint: "Ej: 3 meses de garantía en cada trabajo. Solo si de verdad la dan." }
               - { label: "Certificación SEC", name: sec, widget: string, required: false, hint: "Ej: Instaladora de gas autorizada SEC, clase 3. Solo si la licencia está vigente." }
-              - { label: "Enlace para verificar la SEC (opcional)", name: sec_enlace, widget: string, required: false, hint: "Buscador oficial de instaladores de la SEC." }
+              - { label: "Enlace para verificar la SEC", name: sec_enlace, widget: string, required: false, hint: "Buscador oficial de instaladores de la SEC." }
               - { label: "Valor de la visita", name: visita, widget: string, required: false, hint: "Ej: Visita $15.000, se descuenta si acepta el presupuesto." }
           - label: Portada
             name: portada
