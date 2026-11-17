@@ -162,10 +162,10 @@
     // Si el panel cambió la lista, se limpia del carro lo que ya no existe o quedó sin precio
     for (var k in carro) { var p = prod(k); if (!p || p.agotado || !p.precio) delete carro[k]; }
     var cats = ["Todos"]; productos.forEach(function (p) { if (cats.indexOf(p.categoria) < 0) cats.push(p.categoria); });
-    $("t-filtros").innerHTML = cats.length > 2 ? cats.map(function (c) { return '<button type="button" class="chip' + (c === filtro ? " on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"; }).join("") : "";
+    $("t-filtros").innerHTML = cats.length > 1 ? cats.map(function (c) { return '<button type="button" class="chip' + (c === filtro ? " on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"; }).join("") : "";
     var marcas = []; productos.forEach(function (p) { if (p.marca && marcas.indexOf(p.marca) < 0) marcas.push(p.marca); });
     var sm = $("t-marca");
-    if (sm) { sm.hidden = !marcas.length; sm.innerHTML = '<option value="">Todas las marcas</option>' + marcas.sort().map(function (m) { return "<option>" + esc(m) + "</option>"; }).join(""); }
+    if (sm) { sm.closest(".t-bloque").hidden = !marcas.length; sm.innerHTML = '<option value="">Todas las marcas</option>' + marcas.sort().map(function (m) { return "<option>" + esc(m) + "</option>"; }).join(""); }
     pintarProductos(); pintarCarro();
   }
 
@@ -175,9 +175,15 @@
     var vis = productos.filter(function (p) {
       if (filtro !== "Todos" && p.categoria !== filtro) return false;
       if (mq && p.marca !== mq) return false;
+      if ($("t-disp") && $("t-disp").checked && (p.agotado || !p.precio)) return false;
       if (q && (p.nombre + " " + p.descripcion + " " + p.codigo + " " + p.marca + " " + p.compatible).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
+    var ord = $("t-orden") ? $("t-orden").value : "";
+    if (ord === "menor") vis.sort(function (a, b) { return (a.precio || 1e12) - (b.precio || 1e12); });
+    if (ord === "mayor") vis.sort(function (a, b) { return b.precio - a.precio; });
+    if (ord === "nombre") vis.sort(function (a, b) { return a.nombre.localeCompare(b.nombre, "es"); });
+    if ($("t-cuenta")) $("t-cuenta").textContent = vis.length + (vis.length === 1 ? " producto" : " productos");
     if (!vis.length) { g.innerHTML = '<p class="t-vacio">' + (q || mq ? "No encontramos productos con esa búsqueda. Escríbenos por WhatsApp y te ayudamos a encontrar el repuesto." : "Pronto agregaremos productos en esta categoría.") + "</p>"; return; }
     g.innerHTML = vis.map(function (p) {
       var foto = p.foto ? '<img src="' + esc(p.foto) + '" alt="' + esc(p.nombre) + '" loading="lazy">' : '<div class="t-sinfoto"><svg aria-hidden="true"><use href="#i-caja"/></svg></div>';
@@ -238,6 +244,9 @@
   });
   var tb = $("t-buscar"); tb && tb.addEventListener("input", pintarProductos);
   var tm = $("t-marca"); tm && tm.addEventListener("change", pintarProductos);
+  ["t-orden", "t-disp"].forEach(function (id) { var e = $(id); e && e.addEventListener("change", pintarProductos); });
+  // En celular los filtros parten cerrados
+  if (window.matchMedia && window.matchMedia("(max-width: 860px)").matches) { var tp = document.querySelector(".t-panel"); if (tp) tp.open = false; }
   var selE = $("pd-entrega");
   selE && selE.addEventListener("change", function () { $("pd-dir-l").hidden = selE.value !== "Despacho a domicilio"; });
 

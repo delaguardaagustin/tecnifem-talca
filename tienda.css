@@ -73,3 +73,47 @@
 .chip.on{background:var(--navy);border-color:var(--navy)}
 .carro-btn{border-radius:12px}
 @media (max-width:640px){.t-buscar{flex:1 1 100%}.t-barra .t-filtros{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;width:100%}.chip{white-space:nowrap}.s-filtros{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}}
+
+/* ---- Tienda estilo catálogo (fondo oscuro, filtros al costado) ---- */
+.tienda-s{padding:0 0 70px;background:#0b1424;color:#e8eef6}
+.t-banner{position:relative;padding:70px 0 56px;background:linear-gradient(90deg,rgba(0,32,80,.96) 0%,rgba(0,32,80,.8) 45%,rgba(0,32,80,.35) 100%),url("assets/fotos/canerias-calefont.jpg") center 40%/cover;margin-bottom:34px}
+.t-banner h2{color:#fff;font-size:clamp(2.3rem,6vw,4rem)}.t-banner h2 em{color:var(--rayo)}
+.t-banner p{color:#d6e2f0;max-width:52ch;margin:10px 0 0}.t-banner .ojo{color:#9fc6ea}
+.t-layout{display:grid;grid-template-columns:250px 1fr;gap:26px;align-items:start}
+.t-lateral{position:sticky;top:96px;display:grid;gap:14px}
+.t-panel{background:#131f33;border:1px solid #22324b;border-radius:16px;padding:6px 16px 14px}
+.t-panel summary{color:#fff;padding:12px 30px 10px 0;font-family:var(--display);font-stretch:90%;text-transform:uppercase;letter-spacing:.04em}
+.t-panel summary::after{color:var(--rayo)}
+.t-bloque{border-top:1px solid #22324b;padding:12px 0 4px}
+.t-bloque h4{margin:0 0 10px;font:700 .78rem/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:#9fb3cc}
+.t-lateral .t-filtros{display:grid;gap:6px;margin:0}
+.t-lateral .chip{background:transparent;border:1px solid #2a3b56;color:#dbe6f3;text-align:left;border-radius:10px;padding:9px 12px}
+.t-lateral .chip:hover{border-color:var(--rayo);color:#fff}
+.t-lateral .chip.on{background:var(--rayo);border-color:var(--rayo);color:var(--navy)}
+.t-lateral .t-sel{width:100%;background:#0b1424;border-color:#2a3b56;color:#fff;border-radius:10px}
+.t-switch{display:flex!important;align-items:center;gap:10px;margin:0!important;color:#dbe6f3!important;font-weight:600!important;cursor:pointer}
+.t-switch input{position:absolute;opacity:0;width:1px;height:1px}
+.t-switch span{flex:none;width:40px;height:22px;border-radius:11px;background:#2a3b56;position:relative;transition:background .2s}
+.t-switch span::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+.t-switch input:checked+span{background:var(--wa)}.t-switch input:checked+span::after{transform:translateX(18px)}
+.t-switch input:focus-visible+span{outline:2px solid var(--rayo);outline-offset:2px}
+.t-empresa{display:block;text-decoration:none;background:var(--azul);color:#fff;border-radius:16px;padding:16px}
+.t-empresa b{display:block;font-family:var(--display);font-stretch:90%;text-transform:uppercase;font-size:1.05rem}.t-empresa span{font-size:.88rem;color:#dbeaf7}
+.tienda-s .t-barra{margin-bottom:18px}
+.t-cuenta{color:#9fb3cc;font-size:.92rem;margin-right:auto}
+.t-orden{display:flex!important;align-items:center;gap:8px;margin:0!important;color:#9fb3cc!important;font-weight:500!important;font-size:.9rem!important}
+.tienda-s .t-buscar input,.tienda-s .t-orden .t-sel{background:#131f33;border-color:#2a3b56;color:#fff}
+.tienda-s .t-buscar input::placeholder{color:#8ea2bd}
+.tienda-s .t-grilla{grid-template-columns:repeat(3,1fr)}
+.tienda-s .t-prod{border:0;border-radius:16px}
+.tienda-s .t-prod h3{text-transform:uppercase;font-size:.98rem;letter-spacing:.01em;text-align:center}
+.tienda-s .t-cat{text-align:center}
+.tienda-s .t-meta{justify-content:center}
+.tienda-s .t-precio{text-align:center}
+.tienda-s .t-img img,.tienda-s .t-sinfoto{background:#fff;object-fit:contain;padding:10px}
+.tienda-s .t-vacio{color:#c9d8ea}
+.tienda-s .t-aviso{background:#2b2410;border-color:#6b5210;color:#ffe3a1}
+.tienda-s .nota{color:#9fb3cc}
+@media (max-width:1100px){.tienda-s .t-grilla{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){.t-layout{grid-template-columns:1fr}.t-lateral{position:static}.t-orden span{display:none}.t-cuenta{width:100%}}
+@media (max-width:640px){.t-banner{padding:48px 0 40px}.tienda-s .t-grilla{gap:10px}}

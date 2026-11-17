@@ -189,6 +189,7 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 <div class="franja"><div class="wrap">
   <span class="aviso-txt"></span>
   <div class="datos-f">
+    <a href="https://wa.me/56945213431?text=Hola%2C%20somos%20una%20empresa%20o%20instituci%C3%B3n%20y%20queremos%20cotizar" target="_blank" rel="noopener"><b style="color:var(--rayo)">¿Eres empresa? Cotiza aquí</b></a>
     <a href="tel:+56945213431"><svg aria-hidden="true"><use href="#tel"/></svg>+56 9 4521 3431</a>
     <span><svg aria-hidden="true"><use href="#reloj"/></svg><span id="c-hor-franja">Lunes, 10:00 a 23:00</span></span>
     <span><svg aria-hidden="true"><use href="#pin"/></svg><span id="c-zona-franja">Talca</span></span>
@@ -240,17 +241,34 @@ footer small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
   <p class="nota" id="s-nota">El valor depende del trabajo; se informa al revisar tu caso por WhatsApp.</p>
 </div></section>
 
-<section id="tienda" class="gris" hidden><div class="wrap">
-  <div class="cab"><div><span class="ojo">Tienda en línea</span><h2 id="t-titulo">Repuestos y <em>productos</em></h2></div><p id="t-bajada">Compra en línea lo que necesitas para tu casa.</p></div>
-  <p class="t-aviso" id="t-aviso" hidden></p>
-  <div class="t-barra">
-    <div class="t-filtros" id="t-filtros"></div>
-    <select class="t-sel" id="t-marca" aria-label="Filtrar por marca de calefont" hidden></select>
-    <label class="t-buscar"><span class="sr">Buscar producto</span><input id="t-buscar" type="search" placeholder="Buscar repuesto o producto…" autocomplete="off"></label>
+<section id="tienda" class="tienda-s" hidden>
+  <div class="t-banner"><div class="wrap">
+    <span class="ojo">Tienda en línea · Talca</span>
+    <h2 id="t-titulo">Repuestos y <em>productos</em></h2>
+    <p id="t-bajada">Compra en línea lo que necesitas para tu casa.</p>
+  </div></div>
+  <div class="wrap t-layout">
+    <aside class="t-lateral">
+      <details class="t-panel" open>
+        <summary>Filtros</summary>
+        <div class="t-bloque"><h4>Categorías</h4><div class="t-filtros" id="t-filtros"></div></div>
+        <div class="t-bloque"><h4>Marca</h4><select class="t-sel" id="t-marca" aria-label="Filtrar por marca"><option value="">Todas las marcas</option></select></div>
+        <div class="t-bloque"><label class="t-switch"><input type="checkbox" id="t-disp"><span></span>Solo mostrar disponibles</label></div>
+      </details>
+      <a class="t-empresa" href="https://wa.me/56945213431?text=Hola%2C%20somos%20una%20empresa%20o%20instituci%C3%B3n%20y%20queremos%20cotizar" target="_blank" rel="noopener"><b>¿Empresa o institución?</b><span>Cotizamos por volumen y trabajos para Mercado Público →</span></a>
+    </aside>
+    <div class="t-main">
+      <p class="t-aviso" id="t-aviso" hidden></p>
+      <div class="t-barra">
+        <span class="t-cuenta" id="t-cuenta"></span>
+        <label class="t-buscar"><span class="sr">Buscar producto</span><input id="t-buscar" type="search" placeholder="Buscar repuesto, marca o código…" autocomplete="off"></label>
+        <label class="t-orden"><span>Ordenar por</span><select class="t-sel" id="t-orden"><option value="">Destacados</option><option value="menor">Precio: menor a mayor</option><option value="mayor">Precio: mayor a menor</option><option value="nombre">Nombre (A-Z)</option></select></label>
+      </div>
+      <div class="t-grilla" id="t-grilla"></div>
+      <p class="nota" id="t-entrega"></p>
+    </div>
   </div>
-  <div class="t-grilla" id="t-grilla"></div>
-  <p class="nota" id="t-entrega"></p>
-</div></section>
+</section>
 
 <section id="nosotros"><div class="wrap nosotros">
   <div class="foto aparece">
